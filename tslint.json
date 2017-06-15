@@ -1,0 +1,8 @@
+{
+	"extends": "tslint:latest",
+	"rules": {
+		"quotemark": ["single", true],
+		"indent": ["tabs"],
+		"trailing-comma": false
+	}
+}
