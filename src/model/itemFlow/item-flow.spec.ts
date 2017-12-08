@@ -1,9 +1,9 @@
-import {assert, expect} from 'chai';
+import {expect} from 'chai';
 import {Item} from '../item/item';
 import {ItemFlow} from './item-flow';
 
 describe('ItemFlow', () => {
-	let item;
+	let item: Item;
 	beforeEach(() => {
 		item = new Item('Iron');
 	});

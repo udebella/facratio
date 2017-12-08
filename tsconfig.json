@@ -1,17 +1,21 @@
 {
-  "compilerOptions": {
-    "lib": [
-      "dom",
-      "es5",
-      "es2015",
-      "es2015.promise"
-    ],
-    "module": "es2015",
-    "moduleResolution": "node",
-    "target": "es5",
-    "sourceMap": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true
-  }
+	"compilerOptions": {
+		"lib": [
+			"dom",
+			"esnext"
+		],
+		"module": "es6",
+		"moduleResolution": "node",
+		"target": "es2017",
+		"sourceMap": true,
+		"allowSyntheticDefaultImports": true,
+		"noImplicitAny": true,
+		"alwaysStrict": true,
+		"noEmitOnError": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"pretty": true,
+		"strict": true
+	}
 }

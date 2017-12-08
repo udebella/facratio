@@ -1,11 +1,10 @@
-var webpackConfig = require('./config/webpack.config.test');
+const webpackConfig = require('./config/webpack.config.test');
 
-module.exports = function (config) {
+module.exports = (config) => {
 	config.set({
 		basePath: '',
 		frameworks: ['mocha', 'chai', 'sinon'],
 		files: [
-			'node_modules/es6-promise/dist/es6-promise.auto.js',
 			'src/test.ts'
 		],
 		preprocessors: {
@@ -18,7 +17,13 @@ module.exports = function (config) {
 		colors: true,
 		logLevel: config.LOG_INFO,
 		autoWatch: false,
-		browsers: ['Firefox'],
+		browsers: ['FirefoxHeadless'],
+		customLaunchers: {
+			FirefoxHeadless: {
+				base: 'Firefox',
+				flags: ['-headless'],
+			}
+		},
 		mime: {
 			'text/x-typescript': ['ts']
 		},

@@ -17,7 +17,7 @@ export class Base {
 		this.setUp(output);
 	}
 
-	private setUp(outputFlow: ItemFlow[]) {
+	private setUp(outputFlow: ItemFlow[]): void {
 		const itemsNeeded = outputFlow
 			.filter((itemFlow) => this.input.indexOf(itemFlow.getItem()) === -1);
 

@@ -12,11 +12,11 @@ export class Recipe {
 	}
 
 	public getInput(): ItemFlow[] {
-		return this.itemsNeeded.map((itemFlow) => this.executeRecipe(itemFlow));
+		return this.itemsNeeded.map((itemFlow: ItemFlow) => this.executeRecipe(itemFlow));
 	}
 
 	public getOutput(): ItemFlow[] {
-		return this.output.map((itemFlow) => this.executeRecipe(itemFlow));
+		return this.output.map((itemFlow: ItemFlow) => this.executeRecipe(itemFlow));
 	}
 
 	private executeRecipe(itemFlow: ItemFlow) {
