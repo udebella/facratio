@@ -3,6 +3,7 @@
 	"rules": {
 		"quotemark": ["single", true],
 		"indent": ["tabs"],
-		"trailing-comma": false
+		"trailing-comma": false,
+		"no-unused-expression": false
 	}
 }

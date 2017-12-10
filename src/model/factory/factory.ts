@@ -49,4 +49,3 @@ export class Factory {
 			.map((itemFlow) => itemFlow.multiplyFlow(this.getFactoryEfficiency()));
 	}
 }
-

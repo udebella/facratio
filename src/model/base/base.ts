@@ -6,7 +6,7 @@ import {ItemFlow} from '../itemFlow/item-flow';
 export class Base {
 	private input: Item[];
 	private output: ItemFlow[];
-	public factories: Factory[];
+	private factories: Factory[];
 	private authorizedTypes: FactoryType[];
 
 	constructor(input: Item[], output: ItemFlow[], authorizedTypes: FactoryType[]) {

@@ -3,5 +3,6 @@
   <component name="TypeScriptCompiler">
     <option name="useConfig" value="true" />
     <option name="nodeInterpreterTextField" value="$USER_HOME$/.nvm/v9.2.0/bin/node" />
+    <option name="useService" value="false" />
   </component>
 </project>

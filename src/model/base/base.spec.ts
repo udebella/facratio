@@ -13,7 +13,7 @@ describe('Base', () => {
 		});
 	});
 
-	describe('Method: findRecipes', () => {
+	xdescribe('Method: findRecipes', () => {
 		const iron = new Item('Iron');
 		const copper = new Item('Copper');
 		const copperWire = new Item('Copper Wire');
@@ -24,18 +24,21 @@ describe('Base', () => {
 
 		beforeEach(() => {
 			copperWireRecipe = new Recipe([new ItemFlow(copper, 1)], [new ItemFlow(copperWire, 2)], 0.5);
-			greenCircuitRecipe = new Recipe([new ItemFlow(copperWire, 3), new ItemFlow(iron, 1)], [new ItemFlow(greenCircuits, 1)], 0.5);
+			greenCircuitRecipe = new Recipe(
+				[new ItemFlow(copperWire, 3), new ItemFlow(iron, 1)],
+				[new ItemFlow(greenCircuits, 1)], 0.5);
 			factoryType = new FactoryType([copperWireRecipe, greenCircuitRecipe], 0.5);
 		});
 
-		it('should list all recipes needed to convert input to output', () => {
-			const greenCircuitsFlow = new ItemFlow(greenCircuits, 200);
-			const base = new Base([iron, copper], [greenCircuitsFlow], [factoryType]);
-			base.factories.forEach((factory) => {
-				console.error(`Factory [${factory.computeNumberOfFactories()}:${factory.getFactoryEfficiency()}] : ${JSON.stringify(factory.getRealInput())} => ${JSON.stringify(factory.getRealOutput())}`);
-			});
-			expect(true).to.equal(true);
-		});
+		// it('should list all recipes needed to convert input to output', () => {
+		// 	const greenCircuitsFlow = new ItemFlow(greenCircuits, 200);
+		// 	const base = new Base([iron, copper], [greenCircuitsFlow], [factoryType]);
+		// 	base.factories.forEach((factory) => {
+		// 		console.error(`Factory [${factory.computeNumberOfFactories()}:${factory.getFactoryEfficiency()}] :
+		// ${JSON.stringify(factory.getRealInput())} => ${JSON.stringify(factory.getRealOutput())}`);
+		// 	});
+		// 	expect(true).to.equal(true);
+		// });
 
 		// it('should list only needed recipes to convert input to output', () => {
 		// 	const copperWireFlow = new ItemFlow(copperWire, 1);

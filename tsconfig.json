@@ -10,12 +10,13 @@
 		"sourceMap": true,
 		"allowSyntheticDefaultImports": true,
 		"noImplicitAny": true,
-		"alwaysStrict": true,
-		"noEmitOnError": true,
 		"noImplicitThis": true,
-		"noUnusedLocals": true,
 		"noUnusedParameters": true,
-		"pretty": true,
-		"strict": true
+		"pretty": true
+	},
+	"awesomeTypescriptLoaderOptions": {
+		"inlineSourceMap": true,
+		"sourceMap": false,
+		"noEmitOnError": true
 	}
 }

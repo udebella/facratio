@@ -1,11 +1,10 @@
 const path = require("path");
 
 // Helper functions
-const ROOT = path.resolve(__dirname, "..");
+const PROJECT_ROOT = path.resolve(__dirname, "..");
 
-function root(args) {
-  args = Array.prototype.slice.call(arguments, 0);
-  return path.join.apply(path, [ROOT].concat(args));
-}
+const absolutePath = (relativePath) => PROJECT_ROOT + relativePath;
 
-exports.root = root;
+module.exports = {
+	absolutePath
+};
