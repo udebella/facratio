@@ -9,14 +9,14 @@
 		"npm": ">=5"
 	},
 	"scripts": {
-		"build": "webpack ./config/webpack.config.test.js",
+		"build": "webpack ./config/webpack.config.base.js",
 		"test": "karma start karma.unit.js"
 	},
 	"dependencies": {
-		"@types/chai": "^4.0.8",
+		"@types/chai": "^4.0.10",
 		"@types/mocha": "^2.2.44",
-		"@types/node": "^8.0.57",
-		"@types/sinon": "~4.1.0",
+		"@types/node": "^8.5.1",
+		"@types/sinon": "^4.1.2",
 		"awesome-typescript-loader": "^3.4.1",
 		"chai": "~4.1.2",
 		"istanbul-instrumenter-loader": "~3.0.0",
@@ -30,11 +30,12 @@
 		"karma-sinon": "~1.0.5",
 		"karma-source-map-support": "~1.2.0",
 		"karma-sourcemap-loader": "~0.3.7",
-		"karma-webpack": "^2.0.6",
+		"karma-webpack": "^2.0.9",
 		"mocha": "~4.0.1",
 		"remap-istanbul": "~0.9.1",
 		"sinon": "^4.1.3",
 		"tslint": "^5.8.0",
+		"tslint-loader": "^3.5.3",
 		"tslint-webpack-plugin": "^1.0.0",
 		"typescript": "^2.6.2",
 		"webpack": "~3.10.0"

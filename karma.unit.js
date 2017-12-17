@@ -15,7 +15,6 @@ module.exports = (config) => {
 		reporters: ['mocha'],
 		port: 9876,
 		colors: true,
-		logLevel: config.LOG_INFO,
 		autoWatch: false,
 		browsers: ['FirefoxHeadless'],
 		customLaunchers: {

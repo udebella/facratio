@@ -9,6 +9,8 @@
 		"target": "es2017",
 		"sourceMap": true,
 		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"alwaysStrict": true,
 		"noImplicitAny": true,
 		"noImplicitThis": true,
 		"noUnusedParameters": true,

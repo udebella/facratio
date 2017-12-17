@@ -11,9 +11,7 @@ testConfig = {
 			loader: 'awesome-typescript-loader',
 		}]
 	},
-	entry: {
-		"test": helpers.absolutePath("/src/test.ts")
-	},
+	entry: helpers.absolutePath("/src/test.ts"),
 	plugins: [
 		...webpackConfig.plugins,
 		new SourceMapDevToolPlugin({
