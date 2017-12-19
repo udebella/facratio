@@ -1,53 +1,49 @@
 import {expect} from 'chai';
+import {Item} from '../item/item';
 import {ItemFlow} from '../itemFlow/item-flow';
+import {ItemQuantity} from '../itemQuantity/item-quantity';
+import {TimeFrame, TimeSpan} from '../timespan/timespan';
 import {Recipe} from './recipe';
 
-describe('Recipe', () => {
-	let input: ItemFlow;
-	let output: ItemFlow;
-	beforeEach(() => {
-		input = new ItemFlow(null, 1);
-		output = new ItemFlow(null, 1);
-	});
+describe('Class Recipe', () => {
+	const iron = new Item('Iron');
+	const copper = new Item('Copper');
+	const input = new ItemQuantity(iron, 1);
+	const output = new ItemQuantity(copper, 1);
+	const oneSecond = new TimeSpan(1, TimeFrame.SECONDS);
+	const twoSecond = new TimeSpan(2, TimeFrame.SECONDS);
 
-	describe('Initialization', () => {
-		it('should init properly', () => {
-			const recipe = new Recipe([], [], 1);
-			expect(recipe).not.to.be.undefined;
-		});
-	});
-
-	describe('Method: getInputByMinut', () => {
+	describe('Method: getInput', () => {
 		it('should require no item for a free recipe', () => {
-			const recipe = new Recipe([], [], 1);
+			const recipe = new Recipe([], [], oneSecond);
 			expect(recipe.getInput()).to.deep.equal([]);
 		});
 
-		it('should require 60 items for a recipe taking 1 item per second', () => {
-			const recipe = new Recipe([input], [], 1);
-			expect(recipe.getInput()).to.deep.equal([new ItemFlow(null, 1)]);
+		it('should require 1 item/second for a recipe taking 1 item per second', () => {
+			const recipe = new Recipe([input], [], oneSecond);
+			expect(recipe.getInput()).to.deep.equal([new ItemFlow(input, oneSecond)]);
 		});
 
-		it('should require 30 items for a recipe taking one item every two second', () => {
-			const recipe = new Recipe([input], [], 2);
-			expect(recipe.getInput()).to.deep.equal([new ItemFlow(null, 0.5)]);
+		it('should require 0.5 item/second for a recipe taking one item every two second', () => {
+			const recipe = new Recipe([input], [], twoSecond);
+			expect(recipe.getInput()).to.deep.equal([new ItemFlow(input, twoSecond)]);
 		});
 	});
 
-	describe('Method: getOutputByMinut', () => {
+	describe('Method: getOutput', () => {
 		it('should not output for a recipe witch is only consuming', () => {
-			const recipe = new Recipe([], [], 1);
+			const recipe = new Recipe([], [], oneSecond);
 			expect(recipe.getOutput()).to.deep.equal([]);
 		});
 
-		it('should produce 60 items for a recipe producing one item per second', () => {
-			const recipe = new Recipe([], [output], 1);
-			expect(recipe.getOutput()).to.deep.equal([new ItemFlow(null, 1)]);
+		it('should produce 1 item/second for a recipe producing one item per second', () => {
+			const recipe = new Recipe([], [output], oneSecond);
+			expect(recipe.getOutput()).to.deep.equal([new ItemFlow(output, oneSecond)]);
 		});
 
-		it('should produce 30 items for a recipe producing one item every two second', () => {
-			const recipe = new Recipe([], [output], 2);
-			expect(recipe.getOutput()).to.deep.equal([new ItemFlow(null, 0.5)]);
+		it('should produce 0.5 item/second for a recipe producing one item every two seconds', () => {
+			const recipe = new Recipe([], [output], twoSecond);
+			expect(recipe.getOutput()).to.deep.equal([new ItemFlow(output, twoSecond)]);
 		});
 	});
 });

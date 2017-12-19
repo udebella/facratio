@@ -1,25 +1,29 @@
 import {ItemFlow} from '../itemFlow/item-flow';
+import {ItemQuantity} from '../itemQuantity/item-quantity';
+import {TimeSpan} from '../timespan/timespan';
 
 export class Recipe {
-	private itemsNeeded: ItemFlow[];
-	private secondsNeeded: number;
-	private output: ItemFlow[];
+	private itemsNeeded: ItemQuantity[];
+	private recipeTime: TimeSpan;
+	private output: ItemQuantity[];
 
-	constructor(input: ItemFlow[], output: ItemFlow[], secondsNeeded: number) {
+	constructor(input: ItemQuantity[], output: ItemQuantity[], recipeTime: TimeSpan) {
 		this.itemsNeeded = input;
 		this.output = output;
-		this.secondsNeeded = secondsNeeded;
+		this.recipeTime = recipeTime;
 	}
 
 	public getInput(): ItemFlow[] {
-		return this.itemsNeeded.map((itemFlow: ItemFlow) => this.executeRecipe(itemFlow));
+		return this.itemsNeeded
+			.map((itemFlow: ItemQuantity) => this.executeRecipe(itemFlow));
 	}
 
 	public getOutput(): ItemFlow[] {
-		return this.output.map((itemFlow: ItemFlow) => this.executeRecipe(itemFlow));
+		return this.output
+			.map((itemFlow: ItemQuantity) => this.executeRecipe(itemFlow));
 	}
 
-	private executeRecipe(itemFlow: ItemFlow) {
-		return itemFlow.divideFlow(this.secondsNeeded);
+	private executeRecipe(itemQuantity: ItemQuantity) {
+		return itemQuantity.over(this.recipeTime);
 	}
 }

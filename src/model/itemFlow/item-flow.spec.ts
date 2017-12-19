@@ -1,43 +1,39 @@
 import {expect} from 'chai';
+import {stub} from 'sinon';
 import {Item} from '../item/item';
+import {ItemQuantity} from '../itemQuantity/item-quantity';
+import {TimeFrame, TimeSpan} from '../timespan/timespan';
 import {ItemFlow} from './item-flow';
 
-describe('ItemFlow', () => {
-	let item: Item;
-	beforeEach(() => {
-		item = new Item('Iron');
-	});
+describe('Class ItemFlow', () => {
+	describe('Method: Equals', () => {
+		const copper = new Item('Copper');
+		const oneCopper = new ItemQuantity(copper, 1);
+		const twoCopper = new ItemQuantity(copper, 2);
+		const oneSecond = new TimeSpan(1, TimeFrame.SECONDS);
+		const twoSecond = new TimeSpan(2, TimeFrame.SECONDS);
 
-	describe('Initialization', () => {
-		it('should init properly', () => {
-			const itemFlow = new ItemFlow(item, 1);
-			expect(itemFlow).not.to.be.undefined;
-		});
-	});
+		it('should be the same when itemQuantities are the same', () => {
+			const itemFlow = new ItemFlow(oneCopper, oneSecond);
+			stub(itemFlow, 'equals').returns(true);
 
-	describe('Method: multiplyFlow', () => {
-		it('should multiply quantity of the itemFlow', () => {
-			const itemFlow = new ItemFlow(item, 1);
-			expect(itemFlow.multiplyFlow(2)).to.deep.equal(new ItemFlow(item, 2));
+			const expected = itemFlow.equals(new ItemFlow(oneCopper, oneSecond));
+			expect(expected).to.be.true;
 		});
 
-		it('should not mutate the object', () => {
-			const itemFlow = new ItemFlow(item, 1);
-			itemFlow.multiplyFlow(2);
-			expect(itemFlow).to.deep.equal(new ItemFlow(item, 1));
-		});
-	});
+		it('should not be the same when itemQuantities are not the same', () => {
+			const itemFlow = new ItemFlow(oneCopper, oneSecond);
+			stub(itemFlow, 'equals').returns(false);
 
-	describe('Method: divideFlow', () => {
-		it('should dividde quantity of the itemFlow', () => {
-			const itemFlow = new ItemFlow(item, 1);
-			expect(itemFlow.divideFlow(2)).to.deep.equal(new ItemFlow(item, 0.5));
+			const expected = itemFlow.equals(new ItemFlow(twoCopper, oneSecond));
+			expect(expected).to.be.false;
 		});
 
-		it('should not mutate the object', () => {
-			const itemFlow = new ItemFlow(item, 1);
-			itemFlow.divideFlow(2);
-			expect(itemFlow).to.deep.equal(new ItemFlow(item, 1));
+		it('should compare two itemflow with different TimeSpan', () => {
+			const itemFlow = new ItemFlow(twoCopper, oneSecond);
+
+			const expected = itemFlow.equals(new ItemFlow(oneCopper, twoSecond));
+			expect(expected).to.be.true;
 		});
 	});
 });
