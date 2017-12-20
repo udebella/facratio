@@ -1,34 +1,26 @@
 import {Item} from '../item/item';
-import {Recipe} from '../recipe/recipe';
+import {OutputingRecipe} from '../recipe/recipe';
+
+const EMPTY_RECIPE: OutputingRecipe = {
+	hasOutput: () => false
+};
 
 export class FactoryType {
 	private craftingSpeed: number;
-	private recipes: Recipe[];
+	private recipes: OutputingRecipe[];
 
-	constructor(recipes: Recipe[], craftingSpeed: number) {
+	constructor(recipes: OutputingRecipe[], craftingSpeed: number) {
 		this.recipes = recipes;
 		this.craftingSpeed = craftingSpeed;
 	}
 
-	public getCraftingSpeed(): number {
-		return this.craftingSpeed;
-	}
-
-	public getRecipes(): Recipe[] {
-		return this.recipes;
-	}
-
-	public findRecipeForProducing(itemWanted: Item): Recipe {
-		return this.recipes
-			.find((recipe) => {
-				const item = recipe.getOutput()
-					.map((outputFlow) => outputFlow.getItem())
-					.find((outputItem) => outputItem === itemWanted);
-				return item !== undefined;
-			});
+	private findRecipeForProducing(itemWanted: Item): OutputingRecipe {
+		const foundRecipe = this.recipes
+			.find(recipe => recipe.hasOutput(itemWanted));
+		return foundRecipe || EMPTY_RECIPE;
 	}
 
 	public canProduce(item: Item): boolean {
-		return this.findRecipeForProducing(item) !== undefined;
+		return this.findRecipeForProducing(item) !== EMPTY_RECIPE;
 	}
 }

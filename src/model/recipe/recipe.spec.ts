@@ -46,4 +46,25 @@ describe('Class Recipe', () => {
 			expect(recipe.getOutput()).to.deep.equal([new ItemFlow(output, twoSecond)]);
 		});
 	});
+
+	describe('Method: hasOutput', () => {
+		it('should return true when recipe is producing the item', () => {
+			const oneIron = new ItemQuantity(iron, 1);
+			const recipe = new Recipe([], [oneIron], oneSecond);
+
+			const hasOutput = recipe.hasOutput(iron);
+
+			expect(hasOutput).to.be.true;
+		});
+
+		it('should return false when recipe is not producing the item', () => {
+			const copper = new Item('copper');
+			const oneIron = new ItemQuantity(iron, 1);
+			const recipe = new Recipe([], [oneIron], oneSecond);
+
+			const hasOutput = recipe.hasOutput(copper);
+
+			expect(hasOutput).to.be.false;
+		});
+	});
 });

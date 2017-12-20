@@ -58,4 +58,12 @@ describe('Class ItemQuantity', () => {
 			expect(expected).to.be.true;
 		});
 	});
+
+	describe('Method: hasItem', () => {
+		it('should return true when itemQuantity contains the item requested', () => {
+			const itemQuantity = new ItemQuantity(iron, 1);
+
+			expect(itemQuantity.hasItem(iron)).to.be.true;
+		});
+	});
 });
