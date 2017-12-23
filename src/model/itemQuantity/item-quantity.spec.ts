@@ -48,14 +48,20 @@ describe('Class ItemQuantity', () => {
 		});
 	});
 
-	describe('Method: multiply', () => {
-		it('should allow to multiply an itemQuantity', () => {
-			const itemQuantity = new ItemQuantity(iron, 1);
+	describe('Method: divide', () => {
+		it('should allow to divide an itemQuantity by two', () => {
+			const itemQuantity = new ItemQuantity(iron, 2);
 
-			const itemQuantityMultiplied = itemQuantity.multiply(2);
+			const itemQuantityDivided = itemQuantity.divide(2);
 
-			const expected = itemQuantityMultiplied.equals(new ItemQuantity(iron, 2));
+			const expected = itemQuantityDivided.equals(new ItemQuantity(iron, 1));
 			expect(expected).to.be.true;
+		});
+
+		it('should not allow a division by 0', () => {
+			const itemQuantity = new ItemQuantity(iron, 2);
+
+			expect(() => itemQuantity.divide(0)).to.throw('Invalid division factor');
 		});
 	});
 

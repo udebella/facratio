@@ -20,11 +20,14 @@ export class ItemQuantity {
 			&& this.quantity === other.quantity;
 	}
 
-	public multiply(factor: number): ItemQuantity {
-		return new ItemQuantity(this.item, this.quantity * factor);
-	}
-
 	public hasItem(item: Item): boolean {
 		return this.item.equals(item);
+	}
+
+	public divide(factor: number): ItemQuantity {
+		if (factor === 0) {
+			throw new Error('Invalid division factor');
+		}
+		return new ItemQuantity(this.item, this.quantity / factor);
 	}
 }

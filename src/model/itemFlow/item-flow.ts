@@ -5,7 +5,7 @@ export class ItemFlow {
 	private itemQuantity: ItemQuantity;
 
 	constructor(itemQuantity: ItemQuantity, timespan: TimeSpan) {
-		this.itemQuantity = itemQuantity.multiply(timespan.getSeconds());
+		this.itemQuantity = itemQuantity.divide(timespan.getSeconds());
 	}
 
 	public equals(other: ItemFlow): boolean {

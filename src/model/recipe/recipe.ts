@@ -20,19 +20,19 @@ export class Recipe implements OutputingRecipe {
 
 	public getInput(): ItemFlow[] {
 		return this.itemsNeeded
-			.map((itemFlow: ItemQuantity) => this.executeRecipe(itemFlow));
+			.map((items) => this.executeRecipe(items));
 	}
 
 	public getOutput(): ItemFlow[] {
 		return this.output
-			.map((itemFlow: ItemQuantity) => this.executeRecipe(itemFlow));
+			.map((items) => this.executeRecipe(items));
 	}
 
 	public hasOutput(item: Item): boolean {
-		return this.output.find((itemQuantity) => itemQuantity.hasItem(item)) !== undefined;
+		return this.output.find((items) => items.hasItem(item)) !== undefined;
 	}
 
-	private executeRecipe(itemQuantity: ItemQuantity) {
-		return itemQuantity.over(this.recipeTime);
+	private executeRecipe(items: ItemQuantity) {
+		return items.over(this.recipeTime);
 	}
 }

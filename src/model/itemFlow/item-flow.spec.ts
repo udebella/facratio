@@ -1,5 +1,4 @@
 import {expect} from 'chai';
-import {stub} from 'sinon';
 import {Item} from '../item/item';
 import {ItemQuantity} from '../itemQuantity/item-quantity';
 import {TimeFrame, TimeSpan} from '../timespan/timespan';
@@ -15,7 +14,6 @@ describe('Class ItemFlow', () => {
 
 		it('should be the same when itemQuantities are the same', () => {
 			const itemFlow = new ItemFlow(oneCopper, oneSecond);
-			stub(itemFlow, 'equals').returns(true);
 
 			const expected = itemFlow.equals(new ItemFlow(oneCopper, oneSecond));
 			expect(expected).to.be.true;
@@ -23,16 +21,15 @@ describe('Class ItemFlow', () => {
 
 		it('should not be the same when itemQuantities are not the same', () => {
 			const itemFlow = new ItemFlow(oneCopper, oneSecond);
-			stub(itemFlow, 'equals').returns(false);
 
 			const expected = itemFlow.equals(new ItemFlow(twoCopper, oneSecond));
 			expect(expected).to.be.false;
 		});
 
 		it('should compare two itemflow with different TimeSpan', () => {
-			const itemFlow = new ItemFlow(twoCopper, oneSecond);
+			const itemFlow = new ItemFlow(oneCopper, oneSecond);
 
-			const expected = itemFlow.equals(new ItemFlow(oneCopper, twoSecond));
+			const expected = itemFlow.equals(new ItemFlow(twoCopper, twoSecond));
 			expect(expected).to.be.true;
 		});
 	});
