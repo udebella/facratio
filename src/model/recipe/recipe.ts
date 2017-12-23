@@ -28,11 +28,11 @@ export class Recipe implements OutputingRecipe {
 			.map((itemFlow: ItemQuantity) => this.executeRecipe(itemFlow));
 	}
 
-	private executeRecipe(itemQuantity: ItemQuantity) {
-		return itemQuantity.over(this.recipeTime);
+	public hasOutput(item: Item): boolean {
+		return this.output.find((itemQuantity) => itemQuantity.hasItem(item)) !== undefined;
 	}
 
-	public hasOutput(item: Item): boolean {
-		return this.output.find(itemQuantity => itemQuantity.hasItem(item)) !== undefined;
+	private executeRecipe(itemQuantity: ItemQuantity) {
+		return itemQuantity.over(this.recipeTime);
 	}
 }

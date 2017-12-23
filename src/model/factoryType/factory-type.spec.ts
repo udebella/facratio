@@ -6,7 +6,7 @@ import {FactoryType} from './factory-type';
 describe('Class FactoryType', () => {
 	const gear = new Item('Gear');
 	const gearsRecipe: OutputingRecipe = {
-		hasOutput: item => item === gear
+		hasOutput: (item) => item === gear
 	};
 	const copperWireRecipe: OutputingRecipe = {
 		hasOutput: () => false

@@ -14,13 +14,13 @@ export class FactoryType {
 		this.craftingSpeed = craftingSpeed;
 	}
 
-	private findRecipeForProducing(itemWanted: Item): OutputingRecipe {
-		const foundRecipe = this.recipes
-			.find(recipe => recipe.hasOutput(itemWanted));
-		return foundRecipe || EMPTY_RECIPE;
-	}
-
 	public canProduce(item: Item): boolean {
 		return this.findRecipeForProducing(item) !== EMPTY_RECIPE;
+	}
+
+	private findRecipeForProducing(itemWanted: Item): OutputingRecipe {
+		const foundRecipe = this.recipes
+			.find((recipe) => recipe.hasOutput(itemWanted));
+		return foundRecipe || EMPTY_RECIPE;
 	}
 }

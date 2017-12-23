@@ -58,7 +58,6 @@ describe('Class Recipe', () => {
 		});
 
 		it('should return false when recipe is not producing the item', () => {
-			const copper = new Item('copper');
 			const oneIron = new ItemQuantity(iron, 1);
 			const recipe = new Recipe([], [oneIron], oneSecond);
 
