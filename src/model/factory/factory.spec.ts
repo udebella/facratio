@@ -1,6 +1,6 @@
 // import {expect} from 'chai';
 // import {stub} from 'sinon';
-// import {FactoryType} from '../factoryType/factory-type';
+// import {RecipeBook} from '../factoryType/factory-type';
 // import {Item} from '../item/item';
 // import {ItemFlow} from '../itemFlow/item-flow';
 // import {ItemQuantity} from '../itemQuantity/item-quantity';
@@ -19,7 +19,7 @@
 // 	const oneMinute = new TimeSpan(1, TimeFrame.MINUTS);
 // 	const twoMinute = new TimeSpan(2, TimeFrame.MINUTS);
 // 	const outputNeeded = new ItemFlow(oneGear, oneSecond);
-// 	const factoryType = new FactoryType([], 1);
+// 	const factoryType = new RecipeBook([], 1);
 //
 // 	describe('Initialization', () => {
 // 		it('should init properly', () => {

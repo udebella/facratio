@@ -1,0 +1,17 @@
+[
+	{
+		"input": [
+			{
+				"itemName": "iron",
+				"quantity": 2
+			}
+		],
+		"output": [
+			{
+				"itemName": "gear",
+				"quantity": 1
+			}
+		],
+		"craftingTime": 0.5
+	}
+]

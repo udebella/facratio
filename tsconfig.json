@@ -4,7 +4,6 @@
 			"dom",
 			"esnext"
 		],
-		"module": "es6",
 		"moduleResolution": "node",
 		"target": "es2017",
 		"sourceMap": true,
@@ -16,6 +15,10 @@
 		"noUnusedParameters": true,
 		"pretty": true
 	},
+	"include": [
+		"./typings.d.ts",
+		"src/**/*"
+	],
 	"awesomeTypescriptLoaderOptions": {
 		"inlineSourceMap": true,
 		"sourceMap": false,

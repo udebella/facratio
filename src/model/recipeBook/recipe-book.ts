@@ -5,13 +5,11 @@ const EMPTY_RECIPE: OutputingRecipe = {
 	hasOutput: () => false
 };
 
-export class FactoryType {
-	private craftingSpeed: number;
+export class RecipeBook {
 	private recipes: OutputingRecipe[];
 
-	constructor(recipes: OutputingRecipe[], craftingSpeed: number) {
+	constructor(recipes: OutputingRecipe[]) {
 		this.recipes = recipes;
-		this.craftingSpeed = craftingSpeed;
 	}
 
 	public canProduce(item: Item): boolean {

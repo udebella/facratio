@@ -17,7 +17,7 @@
 // 		const greenCircuits = new Item('Green circuit');
 // 		const oneGreenCircuit = new ItemQuantity(greenCircuits, 1);
 // 		const halfASecond = new TimeSpan(0.5, TimeFrame.SECONDS);
-// 		let factoryType: FactoryType;
+// 		let factoryType: RecipeBook;
 // 		let copperWireRecipe: Recipe;
 // 		let greenCircuitRecipe: Recipe;
 //
@@ -26,7 +26,7 @@
 // 			greenCircuitRecipe = new Recipe(
 // 				[threeCopperWire, oneIron],
 // 				[oneGreenCircuit], halfASecond);
-// 			factoryType = new FactoryType([copperWireRecipe, greenCircuitRecipe], 0.5);
+// 			factoryType = new RecipeBook([copperWireRecipe, greenCircuitRecipe], 0.5);
 // 		});
 //
 // 		// it('should list all recipes needed to convert input to output', () => {
