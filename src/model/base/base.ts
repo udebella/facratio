@@ -1,5 +1,5 @@
 // import {Factory} from '../factory/factory';
-// import {RecipeBook} from '../factoryType/factory-type';
+// import {FactoryModel} from '../factoryType/factory-type';
 // import {Item} from '../item/item';
 // import {ItemFlow} from '../itemFlow/item-flow';
 //
@@ -7,9 +7,9 @@
 // 	private input: Item[];
 // 	private output: ItemFlow[];
 // 	private factories: Factory[];
-// 	private authorizedTypes: RecipeBook[];
+// 	private authorizedTypes: FactoryModel[];
 //
-// 	constructor(input: Item[], output: ItemFlow[], authorizedTypes: RecipeBook[]) {
+// 	constructor(input: Item[], output: ItemFlow[], authorizedTypes: FactoryModel[]) {
 // 		this.input = input;
 // 		this.output = output;
 // 		this.authorizedTypes = authorizedTypes;
@@ -42,7 +42,7 @@
 // 	// 		.filter((itemFlow) => this.input.indexOf(itemFlow.getItem()) === -1);
 // 	//
 // 	// 	if (itemsNeeded.length !== 0) {
-// 	// 		const newRecipes = this.authorizedTypes.reduce((previous: Recipe[], current: RecipeBook) => {
+// 	// 		const newRecipes = this.authorizedTypes.reduce((previous: Recipe[], current: FactoryModel) => {
 // 	// 			return [
 // 	// 				...previous,
 // 	// 				...this.findRecipesForFactoryType(current, itemsNeeded)
@@ -60,7 +60,7 @@
 // 	// 	return recipes;
 // 	// }
 // 	//
-// 	// private findRecipesForFactoryType(factoryType: RecipeBook, outputFlow: ItemFlow[]): Recipe[] {
+// 	// private findRecipesForFactoryType(factoryType: FactoryModel, outputFlow: ItemFlow[]): Recipe[] {
 // 	// 	return factoryType.getRecipes().filter((recipe) => {
 // 	// 		return recipe.getOutput()
 // 	// 			.map((output) => output.getItem())

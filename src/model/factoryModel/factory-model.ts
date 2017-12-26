@@ -1,15 +1,21 @@
 import {Item} from '../item/item';
-import {OutputingRecipe} from '../recipe/recipe';
+import {Producer} from "../factoryModels/factory-models";
+
+export interface OutputingRecipe {
+	hasOutput(item: Item): boolean;
+}
 
 const EMPTY_RECIPE: OutputingRecipe = {
 	hasOutput: () => false
 };
 
-export class RecipeBook {
+export class FactoryModel implements Producer {
 	private recipes: OutputingRecipe[];
+	private craftingSpeed: number;
 
-	constructor(recipes: OutputingRecipe[]) {
+	constructor(recipes: OutputingRecipe[], craftingSpeed: number) {
 		this.recipes = recipes;
+		this.craftingSpeed = craftingSpeed;
 	}
 
 	public canProduce(item: Item): boolean {
