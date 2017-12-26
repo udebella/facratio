@@ -1,8 +1,8 @@
 import {Item} from '../item/item';
-import {ItemFlow} from '../itemFlow/item-flow';
+import {FlowableQuantity, ItemFlow} from '../itemFlow/item-flow';
 import {TimeSpan} from '../timespan/timespan';
 
-export class ItemQuantity {
+export class ItemQuantity implements FlowableQuantity {
 	private item: Item;
 	private quantity: number;
 

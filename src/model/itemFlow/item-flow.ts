@@ -1,14 +1,20 @@
-import {ItemQuantity} from '../itemQuantity/item-quantity';
-import {TimeSpan} from '../timespan/timespan';
+export interface FlowableQuantity {
+	divide(factor: number): FlowableQuantity;
+	equals(flowableQuantity: FlowableQuantity): boolean;
+}
+
+export interface FlowTimespan {
+	getSeconds(): number;
+}
 
 export class ItemFlow {
-	private itemQuantity: ItemQuantity;
+	private flowableQuantity: FlowableQuantity;
 
-	constructor(itemQuantity: ItemQuantity, timespan: TimeSpan) {
-		this.itemQuantity = itemQuantity.divide(timespan.getSeconds());
+	constructor(flowableQuantity: FlowableQuantity, timespan: FlowTimespan) {
+		this.flowableQuantity = flowableQuantity.divide(timespan.getSeconds());
 	}
 
 	public equals(other: ItemFlow): boolean {
-		return this.itemQuantity.equals(other.itemQuantity);
+		return this.flowableQuantity.equals(other.flowableQuantity);
 	}
 }

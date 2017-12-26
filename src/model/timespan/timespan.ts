@@ -1,10 +1,12 @@
+import {FlowTimespan} from "../itemFlow/item-flow";
+
 export enum TimeFrame {
 	SECONDS = 1,
 	MINUTS = 60,
 	HOURS = 3600
 }
 
-export class TimeSpan {
+export class TimeSpan implements FlowTimespan {
 	private secondsNumber: number;
 
 	constructor(nbUnits: number, timeframe: TimeFrame) {
