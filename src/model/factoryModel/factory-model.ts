@@ -1,5 +1,5 @@
-import {Item} from '../item/item';
 import {Producer} from "../factoryModels/factory-models";
+import {Item} from '../item/item';
 
 export interface OutputingRecipe {
 	hasOutput(item: Item): boolean;
