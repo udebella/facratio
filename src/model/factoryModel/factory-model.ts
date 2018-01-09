@@ -1,19 +1,19 @@
 import {Producer} from "../factoryModels/factory-models";
 import {Item} from '../item/item';
 
-export interface OutputingRecipe {
-	hasOutput(item: Item): boolean;
+export interface ProducingRecipe {
+	canProduce(item: Item): boolean;
 }
 
-const EMPTY_RECIPE: OutputingRecipe = {
-	hasOutput: () => false
+const EMPTY_RECIPE: ProducingRecipe = {
+	canProduce: () => false
 };
 
 export class FactoryModel implements Producer {
-	private recipes: OutputingRecipe[];
+	private recipes: ProducingRecipe[];
 	private craftingSpeed: number;
 
-	constructor(recipes: OutputingRecipe[], craftingSpeed: number) {
+	constructor(recipes: ProducingRecipe[], craftingSpeed: number) {
 		this.recipes = recipes;
 		this.craftingSpeed = craftingSpeed;
 	}
@@ -22,9 +22,9 @@ export class FactoryModel implements Producer {
 		return this.findRecipeForProducing(item) !== EMPTY_RECIPE;
 	}
 
-	private findRecipeForProducing(itemWanted: Item): OutputingRecipe {
+	private findRecipeForProducing(itemWanted: Item): ProducingRecipe {
 		const foundRecipe = this.recipes
-			.find((recipe) => recipe.hasOutput(itemWanted));
+			.find((recipe) => recipe.canProduce(itemWanted));
 		return foundRecipe || EMPTY_RECIPE;
 	}
 }

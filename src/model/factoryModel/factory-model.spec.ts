@@ -1,16 +1,16 @@
 import {expect} from 'chai';
 import {Item} from '../item/item';
-import {FactoryModel, OutputingRecipe} from './factory-model';
+import {FactoryModel, ProducingRecipe} from './factory-model';
 
 describe('Class FactoryModel', () => {
 	const gear = new Item('Gear');
 
 	describe('Method: CanProduce', () => {
-		const gearsRecipe: OutputingRecipe = {
-			hasOutput: (item) => item === gear
+		const gearsRecipe: ProducingRecipe = {
+			canProduce: (item) => item === gear
 		};
-		const copperWireRecipe: OutputingRecipe = {
-			hasOutput: () => false
+		const copperWireRecipe: ProducingRecipe = {
+			canProduce: () => false
 		};
 
 		it('should check if there is a recipe that can produce some items', () => {

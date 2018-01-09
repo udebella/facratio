@@ -1,10 +1,10 @@
-import {OutputingRecipe} from "../factoryModel/factory-model";
+import {ProducingRecipe} from "../factoryModel/factory-model";
 import {Item} from '../item/item';
 import {ItemFlow} from '../itemFlow/item-flow';
 import {ItemQuantity} from '../itemQuantity/item-quantity';
 import {TimeSpan} from '../timespan/timespan';
 
-export class Recipe implements OutputingRecipe {
+export class Recipe implements ProducingRecipe {
 	private itemsNeeded: ItemQuantity[];
 	private recipeTime: TimeSpan;
 	private output: ItemQuantity[];
@@ -15,17 +15,17 @@ export class Recipe implements OutputingRecipe {
 		this.recipeTime = recipeTime;
 	}
 
-	public getInput(): ItemFlow[] {
+	public consumes(): ItemFlow[] {
 		return this.itemsNeeded
 			.map((items) => this.executeRecipe(items));
 	}
 
-	public getOutput(): ItemFlow[] {
+	public produces(): ItemFlow[] {
 		return this.output
 			.map((items) => this.executeRecipe(items));
 	}
 
-	public hasOutput(item: Item): boolean {
+	public canProduce(item: Item): boolean {
 		return this.output.find((items) => items.hasItem(item)) !== undefined;
 	}
 

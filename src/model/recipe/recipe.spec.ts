@@ -1,67 +1,79 @@
 import {expect} from 'chai';
+import {createStubInstance} from 'sinon';
 import {Item} from '../item/item';
 import {ItemFlow} from '../itemFlow/item-flow';
 import {ItemQuantity} from '../itemQuantity/item-quantity';
-import {TimeFrame, TimeSpan} from '../timespan/timespan';
+import {TimeSpan} from '../timespan/timespan';
 import {Recipe} from './recipe';
 
 describe('Class Recipe', () => {
-	const iron = new Item('Iron');
-	const copper = new Item('Copper');
-	const input = new ItemQuantity(iron, 1);
-	const output = new ItemQuantity(copper, 1);
-	const oneSecond = new TimeSpan(1, TimeFrame.SECONDS);
-	const twoSecond = new TimeSpan(2, TimeFrame.SECONDS);
+	let timespan: TimeSpan;
+	let input: any;
+	let output: any;
 
-	describe('Method: getInput', () => {
+	beforeEach(() => {
+		timespan = createStubInstance(TimeSpan);
+		input = createStubInstance(ItemQuantity);
+		output = createStubInstance(ItemQuantity);
+	});
+
+	describe('Method: consumes', () => {
 		it('should require no item for a free recipe', () => {
-			const recipe = new Recipe([], [], oneSecond);
-			expect(recipe.getInput()).to.deep.equal([]);
+			const recipe = new Recipe([], [], timespan);
+			expect(recipe.consumes()).to.deep.equal([]);
 		});
 
-		it('should require 1 item/second for a recipe taking 1 item per second', () => {
-			const recipe = new Recipe([input], [], oneSecond);
-			expect(recipe.getInput()).to.deep.equal([new ItemFlow(input, oneSecond)]);
-		});
+		it('should consume ab itemflow corresponding to the recipe', () => {
+			input.over.returns(new ItemFlow(input, timespan));
+			const recipe = new Recipe([input], [], timespan);
 
-		it('should require 0.5 item/second for a recipe taking one item every two second', () => {
-			const recipe = new Recipe([input], [], twoSecond);
-			expect(recipe.getInput()).to.deep.equal([new ItemFlow(input, twoSecond)]);
+			expect(recipe.consumes()).to.deep.equal([new ItemFlow(input, timespan)]);
 		});
 	});
 
-	describe('Method: getOutput', () => {
+	describe('Method: produces', () => {
 		it('should not output for a recipe witch is only consuming', () => {
-			const recipe = new Recipe([], [], oneSecond);
-			expect(recipe.getOutput()).to.deep.equal([]);
+			const recipe = new Recipe([], [], timespan);
+			expect(recipe.produces()).to.deep.equal([]);
 		});
 
-		it('should produce 1 item/second for a recipe producing one item per second', () => {
-			const recipe = new Recipe([], [output], oneSecond);
-			expect(recipe.getOutput()).to.deep.equal([new ItemFlow(output, oneSecond)]);
-		});
+		it('should produce an itemflow corresponding to the recipe', () => {
+			output.over.returns(new ItemFlow(output, timespan));
+			const recipe = new Recipe([], [output], timespan);
 
-		it('should produce 0.5 item/second for a recipe producing one item every two seconds', () => {
-			const recipe = new Recipe([], [output], twoSecond);
-			expect(recipe.getOutput()).to.deep.equal([new ItemFlow(output, twoSecond)]);
+			expect(recipe.produces()).to.deep.equal([new ItemFlow(output, timespan)]);
 		});
 	});
 
-	describe('Method: hasOutput', () => {
-		it('should return true when recipe is producing the item', () => {
-			const oneIron = new ItemQuantity(iron, 1);
-			const recipe = new Recipe([], [oneIron], oneSecond);
+	describe('Method: CanProduce', () => {
+		let item: any;
 
-			const hasOutput = recipe.hasOutput(iron);
+		beforeEach(() => {
+			item = createStubInstance(Item);
+		});
+
+		it('should return true when recipe is producing the item', () => {
+			output.hasItem.returns(true);
+			const recipe = new Recipe([], [output], timespan);
+
+			const hasOutput = recipe.canProduce(item);
 
 			expect(hasOutput).to.be.true;
 		});
 
 		it('should return false when recipe is not producing the item', () => {
-			const oneIron = new ItemQuantity(iron, 1);
-			const recipe = new Recipe([], [oneIron], oneSecond);
+			output.hasItem.returns(false);
+			const recipe = new Recipe([], [output], timespan);
 
-			const hasOutput = recipe.hasOutput(copper);
+			const hasOutput = recipe.canProduce(item);
+
+			expect(hasOutput).to.be.false;
+		});
+
+		it('should return false when the recipe is only consuming', () => {
+			const recipe = new Recipe([], [], timespan);
+
+			const hasOutput = recipe.canProduce(item);
 
 			expect(hasOutput).to.be.false;
 		});
