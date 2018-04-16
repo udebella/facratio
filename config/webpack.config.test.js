@@ -12,7 +12,8 @@ testConfig = {
 			test: /\.(ts)($|\?)/i
 		})
 	],
-	devtool: 'inline-source-map'
+	devtool: 'inline-source-map',
+	mode: 'development'
 };
 
 module.exports = testConfig;
