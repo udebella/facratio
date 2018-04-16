@@ -4,13 +4,6 @@ const webpackConfig = require('./webpack.config.base');
 
 testConfig = {
 	...webpackConfig,
-	module: {
-		rules: [{
-			test: /\.ts$/,
-			exclude: /node_modules/,
-			loader: 'awesome-typescript-loader',
-		}]
-	},
 	entry: helpers.absolutePath("/src/test.ts"),
 	plugins: [
 		...webpackConfig.plugins,
