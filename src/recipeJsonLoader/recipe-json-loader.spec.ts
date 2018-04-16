@@ -1,8 +1,8 @@
 import {expect} from 'chai';
-import {Item} from "../model/item/item";
-import {ItemQuantity} from "../model/itemQuantity/item-quantity";
-import {Recipe} from "../model/recipe/recipe";
-import {TimeFrame, TimeSpan} from "../model/timespan/timespan";
+import {Item} from '../model/item/item';
+import {ItemQuantity} from '../model/itemQuantity/item-quantity';
+import {Recipe} from '../model/recipe/recipe';
+import {TimeFrame, TimeSpan} from '../model/timespan/timespan';
 import {readFromJson} from './recipe-json-loader';
 import recipeBookTest from './recipe-json-loader-test.json';
 

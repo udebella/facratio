@@ -1,4 +1,4 @@
-import {FlowTimespan} from "../itemFlow/item-flow";
+import {FlowTimespan} from '../itemFlow/item-flow';
 
 export enum TimeFrame {
 	SECONDS = 1,

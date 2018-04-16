@@ -4,7 +4,7 @@ const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin'),
   helpers = require("./helpers"),
   DefinePlugin = require('webpack/lib/DefinePlugin');
 
-webpackConfig.entry["main.min"] = helpers.absolutePath("/src/main.ts");
+webpackConfig.entry["main.min"] = helpers.absolutePath("/src/test.ts");
 
 webpackConfig.plugins = [...webpackConfig.plugins,
   new UglifyJsPlugin({

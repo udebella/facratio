@@ -1,27 +1,31 @@
-const helpers = require("./helpers");
-const TSLintPlugin = require("tslint-webpack-plugin");
+const helpers = require('./helpers');
 
 module.exports = {
-	entry: helpers.absolutePath("/src/main.ts"),
+	entry: helpers.absolutePath('/src/main.ts'),
 	output: {
-		path: helpers.absolutePath("/dist/js"),
-		filename: "[name].js"
+		path: helpers.absolutePath('/dist/js'),
+		filename: '[name].js'
 	},
-	devtool: "source-map",
+	devtool: 'source-map',
 	resolve: {
-		extensions: [".ts", ".js", ".json"],
+		extensions: ['.ts', '.js', '.json'],
 	},
 	module: {
 		rules: [{
 			test: /\.ts$/,
+			enforce: 'pre',
 			exclude: /node_modules/,
-			loader: "awesome-typescript-loader"
+			loader: 'tslint-loader',
+			options: {
+				emitErrors: true,
+				failOnHint: true,
+				fix: true
+			}
+		}, {
+			test: /\.ts$/,
+			exclude: /node_modules/,
+			loader: 'ts-loader'
 		}],
 	},
-	bail: true,
-	plugins: [
-		new TSLintPlugin({
-			files: ['./src/**/*.ts']
-		})
-	]
+	plugins: []
 };

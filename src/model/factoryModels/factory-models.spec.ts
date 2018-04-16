@@ -1,6 +1,6 @@
 import {expect} from 'chai';
-import {Item} from "../item/item";
-import {FactoryModels, NOTHING_PRODUCER, Producer} from "./factory-models";
+import {Item} from '../item/item';
+import {FactoryModels, NOTHING_PRODUCER, Producer} from './factory-models';
 
 describe('Class FactoryModels', () => {
 	const copperWire = new Item('copperWire');

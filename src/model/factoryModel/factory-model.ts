@@ -1,4 +1,4 @@
-import {Producer} from "../factoryModels/factory-models";
+import {Producer} from '../factoryModels/factory-models';
 import {Item} from '../item/item';
 
 export interface ProducingRecipe {

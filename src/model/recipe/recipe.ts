@@ -1,4 +1,4 @@
-import {ProducingRecipe} from "../factoryModel/factory-model";
+import {ProducingRecipe} from '../factoryModel/factory-model';
 import {Item} from '../item/item';
 import {ItemFlow} from '../itemFlow/item-flow';
 import {ItemQuantity} from '../itemQuantity/item-quantity';

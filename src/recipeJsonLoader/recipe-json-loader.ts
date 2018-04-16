@@ -1,7 +1,7 @@
-import {Item} from "../model/item/item";
-import {ItemQuantity} from "../model/itemQuantity/item-quantity";
-import {Recipe} from "../model/recipe/recipe";
-import {TimeFrame, TimeSpan} from "../model/timespan/timespan";
+import {Item} from '../model/item/item';
+import {ItemQuantity} from '../model/itemQuantity/item-quantity';
+import {Recipe} from '../model/recipe/recipe';
+import {TimeFrame, TimeSpan} from '../model/timespan/timespan';
 
 interface JsonRecipe {
 	input: JsonFlow[];

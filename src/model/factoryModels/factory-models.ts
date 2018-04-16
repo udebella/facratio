@@ -1,4 +1,4 @@
-import {Item} from "../item/item";
+import {Item} from '../item/item';
 
 export interface Producer {
 	canProduce(item: Item): boolean;

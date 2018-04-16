@@ -33,7 +33,7 @@ describe('Class ItemFlow', () => {
 		});
 	});
 
-	describe("Component testing", () => {
+	describe('Component testing', () => {
 		const copper = new Item('Copper');
 		const oneCopper = new ItemQuantity(copper, 1);
 		const twoCopper = new ItemQuantity(copper, 2);
