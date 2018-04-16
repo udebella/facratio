@@ -2,8 +2,7 @@ const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin'),
   CompressionPlugin = require('compression-webpack-plugin'),
   webpackConfig = require("./webpack.config.base"),
   helpers = require("./helpers"),
-  DefinePlugin = require('webpack/lib/DefinePlugin'),
-  env = require('../environment/prod.env');
+  DefinePlugin = require('webpack/lib/DefinePlugin');
 
 webpackConfig.entry["main.min"] = helpers.absolutePath("/src/main.ts");
 
