@@ -1,11 +1,12 @@
-const webpackConfig = require('./config/webpack.config.test');
+const webpackConfig = require('./webpack.config.test');
+const helpers = require('./helpers');
 
 module.exports = (config) => {
 	config.set({
-		basePath: '',
+		basePath: '../',
 		frameworks: ['mocha', 'chai', 'sinon'],
 		files: [
-			'src/test.spec.ts'
+			helpers.absolutePath('/src/test.spec.ts')
 		],
 		preprocessors: {
 			'src/test.spec.ts': ['webpack']
@@ -20,7 +21,6 @@ module.exports = (config) => {
 		},
 		port: 9876,
 		colors: true,
-		autoWatch: false,
 		browsers: ['FirefoxHeadless'],
 		customLaunchers: {
 			FirefoxHeadless: {
@@ -31,6 +31,6 @@ module.exports = (config) => {
 		mime: {
 			'text/x-typescript': ['ts']
 		},
-		singleRun: true
+		singleRun: !helpers.hasCommandLineArgument('watch')
 	});
 };

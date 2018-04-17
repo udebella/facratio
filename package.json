@@ -11,7 +11,7 @@
 	},
 	"scripts": {
 		"build": "webpack --config ./config/webpack.config.prod.js",
-		"test": "karma start karma.unit.js"
+		"test": "karma start config/karma.unit.js"
 	},
 	"dependencies": {
 		"@types/chai": "^4.1.2",
