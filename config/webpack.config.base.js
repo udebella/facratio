@@ -1,12 +1,4 @@
-const helpers = require('./helpers');
-
 module.exports = {
-	entry: helpers.absolutePath('/src/main.ts'),
-	output: {
-		path: helpers.absolutePath('/dist/js'),
-		filename: '[name].js'
-	},
-	devtool: 'source-map',
 	resolve: {
 		extensions: ['.ts', '.js', '.json'],
 	},

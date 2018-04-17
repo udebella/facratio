@@ -1,23 +1,29 @@
-const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin'),
-  CompressionPlugin = require('compression-webpack-plugin'),
-  webpackConfig = require("./webpack.config.base"),
-  helpers = require("./helpers"),
-  DefinePlugin = require('webpack/lib/DefinePlugin');
+const webpackConfig = require('./webpack.config.base');
+const helpers = require('./helpers');
 
-webpackConfig.entry["main.min"] = helpers.absolutePath("/src/test.ts");
+module.exports = {
+	...webpackConfig,
+	mode: 'production',
+	entry: helpers.absolutePath('/src/main.ts'),
+	output: {
+		path: helpers.absolutePath('/dist'),
+		filename: '[name].js',
+		library: 'facratio',
+		libraryTarget: 'umd'
+	}
+};
+// webpackConfig.entry['main.min'] = helpers.absolutePath('/src/test.spec.ts');
 
-webpackConfig.plugins = [...webpackConfig.plugins,
-  new UglifyJsPlugin({
-    include: /\.min\.js$/,
-    minimize: true
-  }),
-  new CompressionPlugin({
-    asset: "[path].gz[query]",
-    test: /\.min\.js$/
-  }),
-  new DefinePlugin({
-    'process.env': env
-  })
-];
-
-module.exports = webpackConfig;
+// webpackConfig.plugins = [...webpackConfig.plugins,
+//   new UglifyJsPlugin({
+//     include: /\.min\.js$/,
+//     minimize: true
+//   }),
+//   new CompressionPlugin({
+//     asset: '[path].gz[query]',
+//     test: /\.min\.js$/
+//   }),
+//   new DefinePlugin({
+//     'process.env': env
+//   })
+// ];

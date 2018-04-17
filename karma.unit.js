@@ -5,10 +5,10 @@ module.exports = (config) => {
 		basePath: '',
 		frameworks: ['mocha', 'chai', 'sinon'],
 		files: [
-			'src/test.ts'
+			'src/test.spec.ts'
 		],
 		preprocessors: {
-			'src/test.ts': ['webpack']
+			'src/test.spec.ts': ['webpack']
 		},
 		webpack: webpackConfig,
 		webpackServer: {noInfo: true},

@@ -4,7 +4,7 @@ const webpackConfig = require('./webpack.config.base');
 
 testConfig = {
 	...webpackConfig,
-	entry: helpers.absolutePath("/src/test.ts"),
+	entry: helpers.absolutePath('/src/test.spec.ts'),
 	plugins: [
 		...webpackConfig.plugins,
 		new SourceMapDevToolPlugin({

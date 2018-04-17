@@ -1,15 +1,16 @@
 {
 	"name": "factorio_ratios_calculator",
-	"description": "A Vue.js project",
+	"description": "Lib that provide utilities to simulate a base in factorio",
 	"version": "1.0.0",
 	"author": "Ubu <ubald2b@gmail.com>",
+	"main": "dist/main.js",
 	"private": true,
 	"engines": {
 		"node": ">=9",
 		"npm": ">=5"
 	},
 	"scripts": {
-		"build": "webpack ./config/webpack.config.base.js",
+		"build": "webpack --config ./config/webpack.config.prod.js",
 		"test": "karma start karma.unit.js"
 	},
 	"dependencies": {
@@ -33,6 +34,7 @@
 		"tslint": "^5.9.1",
 		"tslint-loader": "^3.6.0",
 		"typescript": "^2.8.1",
-		"webpack": "^4.5.0"
+		"webpack": "^4.5.0",
+		"webpack-cli": "^2.0.14"
 	}
 }
