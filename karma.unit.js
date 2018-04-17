@@ -12,7 +12,12 @@ module.exports = (config) => {
 		},
 		webpack: webpackConfig,
 		webpackServer: {noInfo: true},
-		reporters: ['mocha'],
+		reporters: ['mocha', 'coverage-istanbul'],
+		coverageIstanbulReporter: {
+			reports: [ 'html', 'text-summary' ],
+			dir: 'coverage',
+			fixWebpackSourcePaths: true
+		},
 		port: 9876,
 		colors: true,
 		autoWatch: false,
