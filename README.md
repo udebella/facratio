@@ -1,4 +1,4 @@
-# Facratio ![Build status](https://travis-ci.org/udebella/facratio.svg?branch=master)
+# Facratio [![Build status](https://travis-ci.org/udebella/facratio.svg?branch=master)](https://travis-ci.org/udebella/facratio)
 
 Tools to simply figure out ratios in Factorio
 
