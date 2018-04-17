@@ -15,10 +15,5 @@
 	"include": [
 		"typings/**/*",
 		"src/**/*"
-	],
-	"awesomeTypescriptLoaderOptions": {
-		"inlineSourceMap": true,
-		"sourceMap": false,
-		"noEmitOnError": true
-	}
+	]
 }
