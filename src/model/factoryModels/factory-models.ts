@@ -5,7 +5,7 @@ export interface Producer {
 }
 
 export const NOTHING_PRODUCER: Producer = {
-	canProduce() { return false; }
+	canProduce: () => false
 };
 
 export class FactoryModels {
