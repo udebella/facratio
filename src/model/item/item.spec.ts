@@ -8,7 +8,6 @@ describe('Class Item', () => {
 			const copper = new Item('copper');
 
 			expect(iron.equals(copper)).to.be.false;
-			expect(iron.equals(new Item('Iron'))).to.be.true;
 		});
 
 		it('same items should be equals', () => {
