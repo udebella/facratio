@@ -25,6 +25,13 @@ describe('Class ItemQuantity', () => {
 		});
 	});
 
+	describe('Method: getItem', () => {
+		it('should give access to the item object', () => {
+			const itemQuantity = new ItemQuantity(iron, 1);
+			expect(itemQuantity.getItem()).to.be.equals(iron);
+		});
+	});
+
 	describe('Method: equals', () => {
 		it('should recognize comparable quantities', () => {
 			const itemQuantity = new ItemQuantity(iron, 2);
@@ -62,14 +69,6 @@ describe('Class ItemQuantity', () => {
 			const itemQuantity = new ItemQuantity(iron, 2);
 
 			expect(() => itemQuantity.divide(0)).to.throw('Invalid division factor');
-		});
-	});
-
-	describe('Method: hasItem', () => {
-		it('should return true when itemQuantity contains the item requested', () => {
-			const itemQuantity = new ItemQuantity(iron, 1);
-
-			expect(itemQuantity.hasItem(iron)).to.be.true;
 		});
 	});
 });

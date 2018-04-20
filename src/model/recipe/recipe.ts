@@ -8,7 +8,6 @@ export class Recipe implements ProducingRecipe {
 	private itemsNeeded: ItemQuantity[];
 	private recipeTime: TimeSpan;
 	private output: ItemQuantity[];
-
 	constructor(input: ItemQuantity[], output: ItemQuantity[], recipeTime: TimeSpan) {
 		this.itemsNeeded = input;
 		this.output = output;
@@ -26,7 +25,13 @@ export class Recipe implements ProducingRecipe {
 	}
 
 	public canProduce(item: Item): boolean {
-		return this.output.find((items) => items.hasItem(item)) !== undefined;
+		return this.getProducedItems()
+			.find((items) => items.equals(item)) !== undefined;
+	}
+
+	public getProducedItems(): Item[] {
+		return this.output
+			.map((quantity) => quantity.getItem());
 	}
 
 	private executeRecipe(items: ItemQuantity) {

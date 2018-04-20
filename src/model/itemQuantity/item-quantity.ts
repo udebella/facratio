@@ -15,15 +15,14 @@ export class ItemQuantity implements FlowableQuantity {
 		return new ItemFlow(this, timeSpan);
 	}
 
+	public getItem(): Item {
+		return this.item;
+	}
+
 	public equals(other: ItemQuantity): boolean {
 		return this.item.equals(other.item)
 			&& this.quantity === other.quantity;
 	}
-
-	public hasItem(item: Item): boolean {
-		return this.item.equals(item);
-	}
-
 	public divide(factor: number): ItemQuantity {
 		if (factor === 0) {
 			throw new Error('Invalid division factor');
