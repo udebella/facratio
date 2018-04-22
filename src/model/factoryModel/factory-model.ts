@@ -6,11 +6,6 @@ export interface ProducingRecipe {
 	getProducedItems(): Item[];
 }
 
-const EMPTY_RECIPE: ProducingRecipe = {
-	canProduce: () => false,
-	getProducedItems: () => []
-};
-
 export class FactoryModel implements Producer {
 	private recipes: ProducingRecipe[];
 	private craftingSpeed: number;
@@ -27,12 +22,11 @@ export class FactoryModel implements Producer {
 	}
 
 	public canProduce(item: Item): boolean {
-		return this.findRecipeForProducing(item) !== EMPTY_RECIPE;
+		return this.findRecipeForProducing(item) !== undefined;
 	}
 
-	private findRecipeForProducing(itemWanted: Item): ProducingRecipe {
-		const foundRecipe = this.recipes
+	private findRecipeForProducing(itemWanted: Item): ProducingRecipe | undefined {
+		return this.recipes
 			.find((recipe) => recipe.canProduce(itemWanted));
-		return foundRecipe || EMPTY_RECIPE;
 	}
 }
