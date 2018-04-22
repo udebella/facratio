@@ -7,13 +7,6 @@ import {ItemQuantity} from './item-quantity';
 describe('Class ItemQuantity', () => {
 	const iron = new Item('Iron');
 
-	describe('Initialization', () => {
-		it('should init properly', () => {
-			const itemQuantity = new ItemQuantity(iron, 1);
-			expect(itemQuantity).not.to.be.undefined;
-		});
-	});
-
 	describe('Method: over', () => {
 		it('should produce an iron flow when a timespan is 1 second', () => {
 			const itemQuantity = new ItemQuantity(iron, 1);
