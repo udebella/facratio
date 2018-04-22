@@ -23,7 +23,7 @@ export class FactoryModel implements Producer {
 	public listProducibleItems(): Item[] {
 		return this.recipes
 			.map((recipe) => recipe.getProducedItems())
-			[0];
+			.reduce((previousValue, currentValue) => [...previousValue, ...currentValue], []);
 	}
 
 	public canProduce(item: Item): boolean {

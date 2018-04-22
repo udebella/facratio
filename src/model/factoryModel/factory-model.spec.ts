@@ -35,5 +35,10 @@ describe('Class FactoryModel', () => {
 			const factoryType = new FactoryModel([gearsRecipe], 1);
 			expect(factoryType.listProducibleItems()).to.deep.equals([gear]);
 		});
+
+		it('should produce no items for a factory model without recipes', () => {
+			const factoryType = new FactoryModel([], 1);
+			expect(factoryType.listProducibleItems()).to.deep.equals([]);
+		});
 	});
 });
