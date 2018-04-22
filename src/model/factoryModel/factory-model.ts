@@ -3,10 +3,12 @@ import {Item} from '../item/item';
 
 export interface ProducingRecipe {
 	canProduce(item: Item): boolean;
+	getProducedItems(): Item[];
 }
 
 const EMPTY_RECIPE: ProducingRecipe = {
-	canProduce: () => false
+	canProduce: () => false,
+	getProducedItems: () => []
 };
 
 export class FactoryModel implements Producer {
@@ -16,6 +18,12 @@ export class FactoryModel implements Producer {
 	constructor(recipes: ProducingRecipe[], craftingSpeed: number) {
 		this.recipes = recipes;
 		this.craftingSpeed = craftingSpeed;
+	}
+
+	public listProducibleItems(): Item[] {
+		return this.recipes
+			.map((recipe) => recipe.getProducedItems())
+			[0];
 	}
 
 	public canProduce(item: Item): boolean {

@@ -7,10 +7,12 @@ describe('Class FactoryModel', () => {
 
 	describe('Method: CanProduce', () => {
 		const gearsRecipe: ProducingRecipe = {
-			canProduce: (item) => item === gear
+			canProduce: (item) => item === gear,
+			getProducedItems: () => [gear]
 		};
 		const copperWireRecipe: ProducingRecipe = {
-			canProduce: () => false
+			canProduce: () => false,
+			getProducedItems: () => []
 		};
 
 		it('should check if there is a recipe that can produce some items', () => {
@@ -21,6 +23,17 @@ describe('Class FactoryModel', () => {
 		it('should return false if no recipe can produce an item', () => {
 			const factoryType = new FactoryModel([], 1);
 			expect(factoryType.canProduce(gear)).to.be.false;
+		});
+	});
+
+	describe('Method: ListProducibleItems', () => {
+		it('should list all items the factory can produce', () => {
+			const gearsRecipe: ProducingRecipe = {
+				canProduce: (item) => item === gear,
+				getProducedItems: () => [gear]
+			};
+			const factoryType = new FactoryModel([gearsRecipe], 1);
+			expect(factoryType.listProducibleItems()).to.deep.equals([gear]);
 		});
 	});
 });
