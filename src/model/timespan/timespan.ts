@@ -7,7 +7,7 @@ export enum TimeFrame {
 }
 
 export class TimeSpan implements FlowTimespan {
-	private secondsNumber: number;
+	private readonly secondsNumber: number;
 
 	constructor(nbUnits: number, timeframe: TimeFrame) {
 		this.secondsNumber = nbUnits * timeframe;

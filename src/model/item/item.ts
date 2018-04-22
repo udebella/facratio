@@ -1,5 +1,5 @@
 export class Item {
-	private name: string;
+	private readonly name: string;
 
 	constructor(name: string) {
 		this.name = name;

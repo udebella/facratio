@@ -9,7 +9,7 @@ export const NOTHING_PRODUCER: Producer = {
 };
 
 export class FactoryModels {
-	private factoryModels: Producer[];
+	private readonly factoryModels: Producer[];
 
 	constructor(factoryModels: Producer[]) {
 		this.factoryModels = factoryModels;

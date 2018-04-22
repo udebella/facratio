@@ -7,8 +7,8 @@ export interface ProducingRecipe {
 }
 
 export class FactoryModel implements Producer {
-	private recipes: ProducingRecipe[];
-	private craftingSpeed: number;
+	private readonly recipes: ProducingRecipe[];
+	private readonly craftingSpeed: number;
 
 	constructor(recipes: ProducingRecipe[], craftingSpeed: number) {
 		this.recipes = recipes;

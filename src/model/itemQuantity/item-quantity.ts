@@ -3,8 +3,8 @@ import {FlowableQuantity, ItemFlow} from '../itemFlow/item-flow';
 import {TimeSpan} from '../timespan/timespan';
 
 export class ItemQuantity implements FlowableQuantity {
-	private item: Item;
-	private quantity: number;
+	private readonly item: Item;
+	private readonly quantity: number;
 
 	constructor(item: Item, quantity: number) {
 		this.item = item;

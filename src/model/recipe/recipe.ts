@@ -5,9 +5,10 @@ import {ItemQuantity} from '../itemQuantity/item-quantity';
 import {TimeSpan} from '../timespan/timespan';
 
 export class Recipe implements ProducingRecipe {
-	private itemsNeeded: ItemQuantity[];
-	private recipeTime: TimeSpan;
-	private output: ItemQuantity[];
+	private readonly itemsNeeded: ItemQuantity[];
+	private readonly recipeTime: TimeSpan;
+	private readonly output: ItemQuantity[];
+
 	constructor(input: ItemQuantity[], output: ItemQuantity[], recipeTime: TimeSpan) {
 		this.itemsNeeded = input;
 		this.output = output;

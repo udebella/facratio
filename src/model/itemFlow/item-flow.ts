@@ -8,7 +8,7 @@ export interface FlowTimespan {
 }
 
 export class ItemFlow {
-	private flowableQuantity: FlowableQuantity;
+	private readonly flowableQuantity: FlowableQuantity;
 
 	constructor(flowableQuantity: FlowableQuantity, timespan: FlowTimespan) {
 		this.flowableQuantity = flowableQuantity.divide(timespan.getSeconds());
