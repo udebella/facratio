@@ -60,41 +60,6 @@ describe('Class Recipe', () => {
 				expect(recipe.getProducedItems()).to.deep.equal([new Item('gear')]);
 			});
 		});
-
-		describe('Method: CanProduce', () => {
-			let item: any;
-
-			beforeEach(() => {
-				item = createStubInstance(Item);
-				output.getItem.returns(item);
-			});
-
-			it('should return true when recipe is producing the item', () => {
-				item.equals.returns(true);
-				const recipe = new Recipe([], [output], timespan);
-
-				const hasOutput = recipe.canProduce(item);
-
-				expect(hasOutput).to.be.true;
-			});
-
-			it('should return false when recipe is not producing the item', () => {
-				item.equals.returns(false);
-				const recipe = new Recipe([], [output], timespan);
-
-				const hasOutput = recipe.canProduce(item);
-
-				expect(hasOutput).to.be.false;
-			});
-
-			it('should return false when the recipe is only consuming', () => {
-				const recipe = new Recipe([], [], timespan);
-
-				const hasOutput = recipe.canProduce(item);
-
-				expect(hasOutput).to.be.false;
-			});
-		});
 	});
 
 	describe('Component tests', () => {
@@ -128,7 +93,6 @@ describe('Class Recipe', () => {
 		it('should be able to verify that the recipe produces gears', () => {
 			const gear = new Item('gear');
 
-			expect(recipe.canProduce(gear)).to.be.true;
 			expect(recipe.getProducedItems()).to.deep.equals([gear]);
 		});
 	});

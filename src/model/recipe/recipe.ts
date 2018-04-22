@@ -24,12 +24,6 @@ export class Recipe implements ProducingRecipe {
 		return this.output
 			.map((items) => this.executeRecipe(items));
 	}
-
-	public canProduce(item: Item): boolean {
-		return this.getProducedItems()
-			.find((items) => items.equals(item)) !== undefined;
-	}
-
 	public getProducedItems(): Item[] {
 		return this.output
 			.map((quantity) => quantity.getItem());
