@@ -7,11 +7,9 @@ describe('Class FactoryModel', () => {
 
 	describe('Method: CanProduce', () => {
 		const gearsRecipe: ProducingRecipe = {
-			canProduce: (item) => item === gear,
 			getProducedItems: () => [gear]
 		};
 		const copperWireRecipe: ProducingRecipe = {
-			canProduce: () => false,
 			getProducedItems: () => []
 		};
 
@@ -29,7 +27,6 @@ describe('Class FactoryModel', () => {
 	describe('Method: ListProducibleItems', () => {
 		it('should list all items the factory can produce', () => {
 			const gearsRecipe: ProducingRecipe = {
-				canProduce: (item) => item === gear,
 				getProducedItems: () => [gear]
 			};
 			const factoryType = new FactoryModel([gearsRecipe], 1);

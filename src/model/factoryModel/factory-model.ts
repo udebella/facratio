@@ -2,7 +2,6 @@ import {Producer} from '../factoryModels/factory-models';
 import {Item} from '../item/item';
 
 export interface ProducingRecipe {
-	canProduce(item: Item): boolean;
 	getProducedItems(): Item[];
 }
 
@@ -21,12 +20,7 @@ export class FactoryModel implements Producer {
 			.reduce((previousValue, currentValue) => [...previousValue, ...currentValue], []);
 	}
 
-	public canProduce(item: Item): boolean {
-		return this.findRecipeForProducing(item) !== undefined;
-	}
-
-	private findRecipeForProducing(itemWanted: Item): ProducingRecipe | undefined {
-		return this.recipes
-			.find((recipe) => recipe.canProduce(itemWanted));
+	public canProduce(itemWanted: Item): boolean {
+		return this.listProducibleItems().find((item) => item.equals(itemWanted)) !== undefined;
 	}
 }
