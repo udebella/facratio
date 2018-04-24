@@ -1,6 +1,7 @@
 import {expect} from 'chai';
 import {createStubInstance} from 'sinon';
-import {Item} from '../item/item';
+import {compareArrays} from '../../helpers/compare-arrays';
+import {buildItem} from '../item/item';
 import {ItemFlow} from '../itemFlow/item-flow';
 import {ItemQuantity} from '../itemQuantity/item-quantity';
 import {buildTimeSpan, TimeFrame, TimeSpan} from '../timespan/timespan';
@@ -53,10 +54,11 @@ describe('Class Recipe', () => {
 		});
 
 		it('should return the list of items produced', () => {
-			output.getItem.returns(new Item('gear'));
+			output.getItem.returns(buildItem('gear'));
 			const recipe = new Recipe([], [output], timespan);
 
-			expect(recipe.getProducedItems()).to.deep.equal([new Item('gear')]);
+			const comparison = compareArrays(recipe.getProducedItems(), [buildItem('gear')]);
+			expect(comparison).to.be.true;
 		});
 	});
 });

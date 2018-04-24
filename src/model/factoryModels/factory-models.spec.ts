@@ -1,15 +1,15 @@
 import {expect} from 'chai';
-import {Item} from '../item/item';
+import {buildItem} from '../item/item';
 import {FactoryModels, NOTHING_PRODUCER, Producer} from './factory-models';
 
 describe('Class FactoryModels', () => {
-	const copperWire = new Item('copperWire');
-	const gear = new Item('gear');
+	const copperWire = buildItem('copperWire');
+	const gear = buildItem('gear');
 	const gearProducer: Producer = {
-		canProduce(item) {return item === gear; }
+		canProduce: (item) => item.equals(gear)
 	};
 	const copperWireProducer: Producer = {
-		canProduce(item) {return item === copperWire; }
+		canProduce: (item) => item.equals(copperWire)
 	};
 	const factoryModels: FactoryModels = new FactoryModels([gearProducer, copperWireProducer]);
 
@@ -27,7 +27,7 @@ describe('Class FactoryModels', () => {
 		});
 
 		it('should return a default value when no matching factory is found', () => {
-			const foundModel = factoryModels.findModelProducing(new Item('iron'));
+			const foundModel = factoryModels.findModelProducing(buildItem('iron'));
 
 			expect(foundModel).to.equals(NOTHING_PRODUCER);
 		});

@@ -1,11 +1,21 @@
-export class Item {
-	private readonly name: string;
+export interface Item {
+	getName: () => string;
+	equals: (other: Item) => boolean;
+}
 
-	constructor(name: string) {
-		this.name = name;
-	}
+export function buildItem(itemName: string): Item {
+	const name = itemName;
 
-	public equals(other: Item): boolean {
-		return this.name === other.name;
-	}
+	const equals = (other: Item): boolean => {
+		return name === other.getName();
+	};
+
+	const getName = (): string => {
+		return name;
+	};
+
+	return {
+		equals,
+		getName
+	};
 }

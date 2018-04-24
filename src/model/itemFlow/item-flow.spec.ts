@@ -1,7 +1,4 @@
 import {expect} from 'chai';
-import {Item} from '../item/item';
-import {ItemQuantity} from '../itemQuantity/item-quantity';
-import {TimeFrame, TimeSpan} from '../timespan/timespan';
 import {FlowableQuantity, ItemFlow} from './item-flow';
 
 describe('Class ItemFlow', () => {

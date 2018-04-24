@@ -1,10 +1,10 @@
 import {expect} from 'chai';
-import {Item} from '../item/item';
+import {buildItem} from '../item/item';
 import {ItemFlow} from '../itemFlow/item-flow';
 import {ItemQuantity} from './item-quantity';
 
 describe('Class ItemQuantity', () => {
-	const iron = new Item('Iron');
+	const iron = buildItem('Iron');
 
 	describe('Method: over', () => {
 		it('should produce an iron flow when a timespan is 1 second', () => {
@@ -38,14 +38,14 @@ describe('Class ItemQuantity', () => {
 		it('should not be equal if we compare quantities of different items', () => {
 			const itemQuantity = new ItemQuantity(iron, 2);
 
-			const expected = new ItemQuantity(new Item('Copper'), 2);
+			const expected = new ItemQuantity(buildItem('Copper'), 2);
 			expect(itemQuantity.equals(expected)).to.be.false;
 		});
 
 		it('should not be equal if we compare different quantities the same iron', () => {
 			const itemQuantity = new ItemQuantity(iron, 2);
 
-			const expected = new ItemQuantity(new Item('Iron'), 1);
+			const expected = new ItemQuantity(buildItem('Iron'), 1);
 			expect(itemQuantity.equals(expected)).to.be.false;
 		});
 	});

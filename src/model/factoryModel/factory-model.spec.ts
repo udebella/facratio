@@ -1,9 +1,9 @@
 import {expect} from 'chai';
-import {Item} from '../item/item';
+import {buildItem} from '../item/item';
 import {FactoryModel, ProducingRecipe} from './factory-model';
 
 describe('Class FactoryModel', () => {
-	const gear = new Item('Gear');
+	const gear = buildItem('Gear');
 
 	describe('Method: CanProduce', () => {
 		const gearsRecipe: ProducingRecipe = {

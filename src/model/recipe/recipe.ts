@@ -1,3 +1,4 @@
+import {compareArrays} from '../../helpers/compare-arrays';
 import {ProducingRecipe} from '../factoryModel/factory-model';
 import {Item} from '../item/item';
 import {ItemFlow} from '../itemFlow/item-flow';
@@ -15,6 +16,12 @@ export class Recipe implements ProducingRecipe {
 		this.recipeTime = recipeTime;
 	}
 
+	// TODO unit test this
+	public equals(other: Recipe): boolean {
+		return compareArrays(this.itemsNeeded, other.itemsNeeded) && compareArrays(this.output, other.output)
+			&& this.recipeTime.getSeconds() === other.recipeTime.getSeconds();
+	}
+
 	public consumes(): ItemFlow[] {
 		return this.itemsNeeded
 			.map((items) => this.executeRecipe(items));
@@ -24,6 +31,7 @@ export class Recipe implements ProducingRecipe {
 		return this.output
 			.map((items) => this.executeRecipe(items));
 	}
+
 	public getProducedItems(): Item[] {
 		return this.output
 			.map((quantity) => quantity.getItem());

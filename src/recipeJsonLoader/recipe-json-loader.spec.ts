@@ -1,16 +1,25 @@
 import {expect} from 'chai';
-import {Item} from '../model/item/item';
+import {compareArrays} from '../helpers/compare-arrays';
+import {buildItem} from '../model/item/item';
+import {ItemQuantity} from '../model/itemQuantity/item-quantity';
+import {Recipe} from '../model/recipe/recipe';
+import {buildTimeSpan, TimeFrame} from '../model/timespan/timespan';
 import {readFromJson} from './recipe-json-loader';
 import json from './recipe-json-loader-test.json';
 
 describe('Function RecipeJsonLoader', () => {
-	const gear = new Item('gear');
+	const gear = buildItem('gear');
+	const iron = buildItem('iron');
+	const ironQuantity = new ItemQuantity(iron, 2);
+	const gearQuantity = new ItemQuantity(gear, 1);
+	const halfASecond = buildTimeSpan(0.5, TimeFrame.SECONDS);
+	const gearsRecipe = new Recipe([ironQuantity], [gearQuantity], halfASecond);
 
 	it('should create a recipe book from a json', () => {
 		const recipes = readFromJson(json);
 
 		// TODO that test is not 100% accurate anymore : it does not check recipes created from the factory
-		const [items] = recipes.map((recipe) => recipe.getProducedItems());
-		expect(items).to.deep.equal([gear]);
+		const comparison = compareArrays(recipes, [gearsRecipe]);
+		expect(comparison).to.be.true;
 	});
 });
