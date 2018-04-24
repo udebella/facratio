@@ -1,12 +1,11 @@
+import {FactoryModel} from '../factoryModel/factory-model';
 import {Item} from '../item/item';
 
 export interface Producer {
 	canProduce(item: Item): boolean;
 }
 
-export const NOTHING_PRODUCER: Producer = {
-	canProduce: () => false
-};
+export const NOTHING_PRODUCER: Producer = new FactoryModel([], 1);
 
 export class FactoryModels {
 	private readonly factoryModels: Producer[];
