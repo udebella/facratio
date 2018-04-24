@@ -1,16 +1,14 @@
+import {TimeSpan} from '../timespan/timespan';
+
 export interface FlowableQuantity {
 	divide(factor: number): FlowableQuantity;
 	equals(flowableQuantity: FlowableQuantity): boolean;
 }
 
-export interface FlowTimespan {
-	getSeconds(): number;
-}
-
 export class ItemFlow {
 	private readonly flowableQuantity: FlowableQuantity;
 
-	constructor(flowableQuantity: FlowableQuantity, timespan: FlowTimespan) {
+	constructor(flowableQuantity: FlowableQuantity, timespan: TimeSpan) {
 		this.flowableQuantity = flowableQuantity.divide(timespan.getSeconds());
 	}
 

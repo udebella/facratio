@@ -1,7 +1,6 @@
 import {expect} from 'chai';
 import {Item} from '../item/item';
 import {ItemFlow} from '../itemFlow/item-flow';
-import {TimeFrame, TimeSpan} from '../timespan/timespan';
 import {ItemQuantity} from './item-quantity';
 
 describe('Class ItemQuantity', () => {
@@ -10,10 +9,13 @@ describe('Class ItemQuantity', () => {
 	describe('Method: over', () => {
 		it('should produce an iron flow when a timespan is 1 second', () => {
 			const itemQuantity = new ItemQuantity(iron, 1);
+			const timeSpan = {
+				getSeconds: () => 1
+			};
 
-			const itemFlow = itemQuantity.over(new TimeSpan(1, TimeFrame.SECONDS));
+			const itemFlow = itemQuantity.over(timeSpan);
 
-			const expectedFlow = new ItemFlow(new ItemQuantity(iron, 1), new TimeSpan(1, TimeFrame.SECONDS));
+			const expectedFlow = new ItemFlow(new ItemQuantity(iron, 1), timeSpan);
 			expect(itemFlow.equals(expectedFlow)).to.be.true;
 		});
 	});

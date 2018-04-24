@@ -7,7 +7,7 @@ import {FlowableQuantity, ItemFlow} from './item-flow';
 describe('Class ItemFlow', () => {
 	describe('Method: Equals', () => {
 		const oneSecond = {
-			getSeconds() {return 1; }
+			getSeconds : () => 1
 		};
 
 		it('should be the same when quantities are the same', () => {
