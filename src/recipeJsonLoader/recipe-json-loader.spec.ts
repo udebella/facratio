@@ -16,9 +16,10 @@ describe('Function RecipeJsonLoader', () => {
 	const gearsRecipe = new Recipe([ironQuantity], [gearQuantity], halfASecond);
 
 	it('should create a recipe book from a json', () => {
+		// When
 		const recipes = readFromJson(json);
 
-		// TODO that test is not 100% accurate anymore : it does not check recipes created from the factory
+		// Then
 		const comparison = compareArrays(recipes, [gearsRecipe]);
 		expect(comparison).to.be.true;
 	});
