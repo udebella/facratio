@@ -5,6 +5,7 @@
 		"indent": ["tabs"],
 		"no-unused-expression": false,
 		"interface-name": false,
-		"semicolon": [true, "never"]
+		"semicolon": [true, "never"],
+		"no-implicit-dependencies": [true, "dev"]
 	}
 }
