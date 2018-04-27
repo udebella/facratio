@@ -1,7 +1,7 @@
 export enum TimeFrame {
 	SECONDS = 1,
 	MINUTS = 60,
-	HOURS = 3600
+	HOURS = 3600,
 }
 
 export interface TimeSpan {

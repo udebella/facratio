@@ -7,10 +7,10 @@ describe('Class FactoryModel', () => {
 
 	describe('Method: CanProduce', () => {
 		const gearsRecipe: ProducingRecipe = {
-			getProducedItems: () => [gear]
+			getProducedItems: () => [gear],
 		};
 		const copperWireRecipe: ProducingRecipe = {
-			getProducedItems: () => []
+			getProducedItems: () => [],
 		};
 
 		it('should check if there is a recipe that can produce some items', () => {
@@ -27,7 +27,7 @@ describe('Class FactoryModel', () => {
 	describe('Method: ListProducibleItems', () => {
 		it('should list all items the factory can produce', () => {
 			const gearsRecipe: ProducingRecipe = {
-				getProducedItems: () => [gear]
+				getProducedItems: () => [gear],
 			};
 			const factoryType = new FactoryModel([gearsRecipe], 1);
 			expect(factoryType.listProducibleItems()).to.deep.equals([gear]);

@@ -16,6 +16,6 @@ export function buildItem(itemName: string): Item {
 
 	return {
 		equals,
-		getName
+		getName,
 	};
 }

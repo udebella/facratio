@@ -37,7 +37,7 @@ describe('Helpers', () => {
 				// Given
 				const object1 = {
 					equals: (other: any) => other.value === 'someValue',
-					value: 'someValue'
+					value: 'someValue',
 				};
 				const object2 = {value: 'someValue'};
 				const object3 = {value: 'someOtherValue'};
@@ -55,7 +55,7 @@ describe('Helpers', () => {
 				// Given
 				const object1 = {
 					equals: (other: any) => other.value === 'someValue',
-					value: 'someValue'
+					value: 'someValue',
 				};
 				const object2 = {value: 'someOtherValue'};
 

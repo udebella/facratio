@@ -10,7 +10,7 @@ describe('Class ItemQuantity', () => {
 		it('should produce an iron flow when a timespan is 1 second', () => {
 			const itemQuantity = new ItemQuantity(iron, 1);
 			const timeSpan = {
-				getSeconds: () => 1
+				getSeconds: () => 1,
 			};
 
 			const itemFlow = itemQuantity.over(timeSpan);

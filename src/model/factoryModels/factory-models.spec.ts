@@ -6,10 +6,10 @@ describe('Class FactoryModels', () => {
 	const copperWire = buildItem('copperWire');
 	const gear = buildItem('gear');
 	const gearProducer: Producer = {
-		canProduce: (item) => item.equals(gear)
+		canProduce: (item) => item.equals(gear),
 	};
 	const copperWireProducer: Producer = {
-		canProduce: (item) => item.equals(copperWire)
+		canProduce: (item) => item.equals(copperWire),
 	};
 	const factoryModels: FactoryModels = new FactoryModels([gearProducer, copperWireProducer]);
 
