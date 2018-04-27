@@ -4,6 +4,7 @@
 		"quotemark": [true, "single", "avoid-template"],
 		"indent": ["tabs"],
 		"no-unused-expression": false,
-		"interface-name": false
+		"interface-name": false,
+		"semicolon": [true, "never"]
 	}
 }

@@ -5,15 +5,15 @@ export enum TimeFrame {
 }
 
 export interface TimeSpan {
-	getSeconds(): number;
+	getSeconds(): number
 }
 
 export const buildTimeSpan = (nbUnits: number, timeframe: TimeFrame): TimeSpan => {
-	const secondsNumber = nbUnits * timeframe;
+	const secondsNumber = nbUnits * timeframe
 
 	const getSeconds = () => {
-		return secondsNumber;
-	};
+		return secondsNumber
+	}
 
-	return {getSeconds};
-};
+	return {getSeconds}
+}

@@ -1,41 +1,41 @@
-import {expect} from 'chai';
-import {buildItem} from '../item/item';
-import {FactoryModel, ProducingRecipe} from './factory-model';
+import {expect} from 'chai'
+import {buildItem} from '../item/item'
+import {FactoryModel, ProducingRecipe} from './factory-model'
 
 describe('Class FactoryModel', () => {
-	const gear = buildItem('Gear');
+	const gear = buildItem('Gear')
 
 	describe('Method: CanProduce', () => {
 		const gearsRecipe: ProducingRecipe = {
 			getProducedItems: () => [gear],
-		};
+		}
 		const copperWireRecipe: ProducingRecipe = {
 			getProducedItems: () => [],
-		};
+		}
 
 		it('should check if there is a recipe that can produce some items', () => {
-			const factoryType = new FactoryModel([copperWireRecipe, gearsRecipe], 1);
-			expect(factoryType.canProduce(gear)).to.be.true;
-		});
+			const factoryType = new FactoryModel([copperWireRecipe, gearsRecipe], 1)
+			expect(factoryType.canProduce(gear)).to.be.true
+		})
 
 		it('should return false if no recipe can produce an item', () => {
-			const factoryType = new FactoryModel([], 1);
-			expect(factoryType.canProduce(gear)).to.be.false;
-		});
-	});
+			const factoryType = new FactoryModel([], 1)
+			expect(factoryType.canProduce(gear)).to.be.false
+		})
+	})
 
 	describe('Method: ListProducibleItems', () => {
 		it('should list all items the factory can produce', () => {
 			const gearsRecipe: ProducingRecipe = {
 				getProducedItems: () => [gear],
-			};
-			const factoryType = new FactoryModel([gearsRecipe], 1);
-			expect(factoryType.listProducibleItems()).to.deep.equals([gear]);
-		});
+			}
+			const factoryType = new FactoryModel([gearsRecipe], 1)
+			expect(factoryType.listProducibleItems()).to.deep.equals([gear])
+		})
 
 		it('should produce no items for a factory model without recipes', () => {
-			const factoryType = new FactoryModel([], 1);
-			expect(factoryType.listProducibleItems()).to.deep.equals([]);
-		});
-	});
-});
+			const factoryType = new FactoryModel([], 1)
+			expect(factoryType.listProducibleItems()).to.deep.equals([])
+		})
+	})
+})
