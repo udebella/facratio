@@ -1,14 +1,14 @@
 import {expect} from 'chai'
-import {FlowableQuantity, ItemFlow} from './item-flow'
+import {ItemFlow} from './item-flow'
 
 describe('Class ItemFlow', () => {
 	describe('Method: Equals', () => {
-		const oneSecond = {
+		const oneSecond: any = {
 			getSeconds : () => 1,
 		}
 
 		it('should be the same when quantities are the same', () => {
-			const flowableQuantity: FlowableQuantity = {
+			const flowableQuantity: any = {
 				divide() {return this },
 				equals() {return true },
 			}
@@ -19,7 +19,7 @@ describe('Class ItemFlow', () => {
 		})
 
 		it('should not be the same when quantities are not the same', () => {
-			const flowableQuantity: FlowableQuantity = {
+			const flowableQuantity: any = {
 				divide() {return this },
 				equals() {return false },
 			}

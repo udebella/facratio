@@ -2,7 +2,7 @@ import {TimeSpan} from '../timespan/timespan'
 
 export interface FlowableQuantity {
 	divide(factor: number): FlowableQuantity
-	equals(flowableQuantity: FlowableQuantity): boolean
+	equals(flowableQuantity: any): boolean
 }
 
 export class ItemFlow {

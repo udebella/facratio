@@ -1,10 +1,12 @@
+import {buildComparable, Comparable} from '../../helpers/comparable'
+
 export enum TimeFrame {
 	SECONDS = 1,
 	MINUTS = 60,
 	HOURS = 3600,
 }
 
-export interface TimeSpan {
+export interface TimeSpan extends Comparable {
 	getSeconds(): number
 }
 
@@ -15,5 +17,8 @@ export const buildTimeSpan = (nbUnits: number, timeframe: TimeFrame): TimeSpan =
 		return secondsNumber
 	}
 
-	return {getSeconds}
+	return {
+		...buildComparable(`Timespan_${secondsNumber}`),
+		getSeconds,
+	}
 }

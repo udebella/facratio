@@ -1,6 +1,6 @@
 import {buildItem} from '../model/item/item'
 import {buildItemQuantity, ItemQuantity} from '../model/itemQuantity/item-quantity'
-import {RecipeRename} from '../model/recipe/recipe'
+import {buildRecipe, Recipe} from '../model/recipe/recipe'
 import {buildTimeSpan, TimeFrame} from '../model/timespan/timespan'
 
 interface JsonRecipe {
@@ -14,10 +14,10 @@ interface JsonFlow {
 	quantity: number
 }
 
-export function readFromJson(jsonRecipes: JsonRecipe[]): RecipeRename[] {
+export function readFromJson(jsonRecipes: JsonRecipe[]): Recipe[] {
 	return jsonRecipes.map((recipe) => {
 		const timeSpan = buildTimeSpan(recipe.craftingTime, TimeFrame.SECONDS)
-		return new RecipeRename(fromFlow(recipe.input), fromFlow(recipe.output), timeSpan)
+		return buildRecipe(fromFlow(recipe.input), fromFlow(recipe.output), timeSpan)
 	})
 }
 

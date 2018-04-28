@@ -16,12 +16,4 @@ describe('Item', () => {
 			expect(iron.equals(buildItem('iron'))).to.be.true
 		})
 	})
-
-	describe('Method: getItem', () => {
-		it('different items should not be equals', () => {
-			const copper = buildItem('copper')
-
-			expect(copper.getName()).to.equals('copper')
-		})
-	})
 })

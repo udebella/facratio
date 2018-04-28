@@ -1,6 +1,13 @@
+import {buildComparable, Comparable} from '../../helpers/comparable'
 import {Item} from '../item/item'
 import {ItemFlow} from '../itemFlow/item-flow'
 import {TimeSpan} from '../timespan/timespan'
+
+export interface ItemQuantity extends Comparable {
+	divide: (factor: number) => ItemQuantity,
+	getItem: () => Item,
+	over: (timeSpan: TimeSpan) => ItemFlow,
+}
 
 export const buildItemQuantity = (item: Item, quantity: number): ItemQuantity => {
 	const over = (timeSpan: TimeSpan): ItemFlow => {
@@ -11,14 +18,6 @@ export const buildItemQuantity = (item: Item, quantity: number): ItemQuantity =>
 		return item
 	}
 
-	const getQuantity = (): number => {
-		return quantity
-	}
-
-	const equals = (other: ItemQuantity): boolean => {
-		return item.equals(other.getItem())
-			&& quantity === other.getQuantity()
-	}
 	const divide = (factor: number): ItemQuantity => {
 		if (factor === 0) {
 			throw new Error('Invalid division factor')
@@ -27,18 +26,9 @@ export const buildItemQuantity = (item: Item, quantity: number): ItemQuantity =>
 	}
 
 	return {
+		...buildComparable(`ItemQuantity_${item.getId()}_${quantity}`),
 		divide,
-		equals,
 		getItem,
-		getQuantity,
 		over,
 	}
-}
-
-export interface ItemQuantity {
-	divide: (factor: number) => ItemQuantity,
-	equals: (other: ItemQuantity) => boolean,
-	getItem: () => Item,
-	getQuantity: () => number
-	over: (timeSpan: TimeSpan) => ItemFlow,
 }

@@ -9,7 +9,7 @@ describe('ItemQuantity', () => {
 	describe('Method: over', () => {
 		it('should produce an iron flow when a timespan is 1 second', () => {
 			const itemQuantity = buildItemQuantity(iron, 1)
-			const timeSpan = {
+			const timeSpan: any = {
 				getSeconds: () => 1,
 			}
 

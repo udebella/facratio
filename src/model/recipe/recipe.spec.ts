@@ -1,10 +1,9 @@
 import {expect} from 'chai'
 import {compareArrays} from '../../helpers/compare-arrays'
-import {TimeSpan} from '../timespan/timespan'
-import {Recipe} from './recipe'
+import {buildRecipe} from './recipe'
 
-describe('Class Recipe', () => {
-	const timespan: TimeSpan = {
+describe('Recipe', () => {
+	const timespan: any = {
 		getSeconds: () => 1,
 	}
 	const input: any = {
@@ -20,12 +19,12 @@ describe('Class Recipe', () => {
 
 	describe('Method: consumes', () => {
 		it('should require no item for a free recipe', () => {
-			const recipe = new Recipe([], [], timespan)
+			const recipe = buildRecipe([], [], timespan)
 			expect(recipe.consumes()).to.deep.equal([])
 		})
 
 		it('should consume an itemflow corresponding to the recipe', () => {
-			const recipe = new Recipe([input], [], timespan)
+			const recipe = buildRecipe([input], [], timespan)
 
 			expect(recipe.consumes()).to.deep.equal([fakeInput])
 		})
@@ -33,12 +32,12 @@ describe('Class Recipe', () => {
 
 	describe('Method: produces', () => {
 		it('should not output for a recipe witch is only consuming', () => {
-			const recipe = new Recipe([], [], timespan)
+			const recipe = buildRecipe([], [], timespan)
 			expect(recipe.produces()).to.deep.equal([])
 		})
 
 		it('should produce an itemflow corresponding to the recipe', () => {
-			const recipe = new Recipe([], [output], timespan)
+			const recipe = buildRecipe([], [output], timespan)
 
 			expect(recipe.produces()).to.deep.equal([fakeOutput])
 		})
@@ -46,14 +45,14 @@ describe('Class Recipe', () => {
 
 	describe('Method: getProducedItems', () => {
 		it('should return an empty list when the recipe only consumes', () => {
-			const recipe = new Recipe([], [], timespan)
+			const recipe = buildRecipe([], [], timespan)
 
 			const comparison = compareArrays(recipe.getProducedItems(), [])
 			expect(comparison).to.be.true
 		})
 
 		it('should return the list of items produced', () => {
-			const recipe = new Recipe([], [output], timespan)
+			const recipe = buildRecipe([], [output], timespan)
 
 			const comparison = compareArrays(recipe.getProducedItems(), [item])
 			expect(comparison).to.be.true

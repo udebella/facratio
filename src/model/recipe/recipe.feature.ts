@@ -4,7 +4,7 @@ import {buildItem} from '../item/item'
 import {ItemFlow} from '../itemFlow/item-flow'
 import {buildItemQuantity} from '../itemQuantity/item-quantity'
 import {buildTimeSpan, TimeFrame} from '../timespan/timespan'
-import {Recipe} from './recipe'
+import {buildRecipe, Recipe} from './recipe'
 
 describe('Recipe features', () => {
 	let recipe: Recipe
@@ -15,7 +15,7 @@ describe('Recipe features', () => {
 		const output = buildItemQuantity(gear, 1)
 		const input = buildItemQuantity(iron, 2)
 		const craftingTime = buildTimeSpan(0.5, TimeFrame.SECONDS)
-		recipe = new Recipe([input], [output], craftingTime)
+		recipe = buildRecipe([input], [output], craftingTime)
 	})
 
 	it('should calculate right consumption', () => {

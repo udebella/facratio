@@ -1,21 +1,9 @@
-export interface Item {
-	getName: () => string
-	equals: (other: Item) => boolean
-}
+import {buildComparable, Comparable} from '../../helpers/comparable'
 
-export function buildItem(itemName: string): Item {
-	const name = itemName
+export type Item = Comparable
 
-	const equals = (other: Item): boolean => {
-		return name === other.getName()
-	}
-
-	const getName = (): string => {
-		return name
-	}
-
+export const buildItem = (itemName: string): Item => {
 	return {
-		equals,
-		getName,
+		...buildComparable(itemName),
 	}
 }
