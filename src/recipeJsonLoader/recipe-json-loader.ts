@@ -1,5 +1,5 @@
 import {buildItem} from '../model/item/item'
-import {ItemQuantity} from '../model/itemQuantity/item-quantity'
+import {buildItemQuantity, ItemQuantity} from '../model/itemQuantity/item-quantity'
 import {Recipe} from '../model/recipe/recipe'
 import {buildTimeSpan, TimeFrame} from '../model/timespan/timespan'
 
@@ -22,5 +22,5 @@ export function readFromJson(jsonRecipes: JsonRecipe[]): Recipe[] {
 }
 
 function fromFlow(jsonFlows: JsonFlow[]): ItemQuantity[] {
-	return jsonFlows.map((jsonFlow) => new ItemQuantity(buildItem(jsonFlow.itemName), jsonFlow.quantity))
+	return jsonFlows.map((jsonFlow) => buildItemQuantity(buildItem(jsonFlow.itemName), jsonFlow.quantity))
 }

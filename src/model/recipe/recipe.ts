@@ -18,7 +18,8 @@ export class Recipe implements ProducingRecipe {
 
 	// TODO unit test this
 	public equals(other: Recipe): boolean {
-		return compareArrays(this.itemsNeeded, other.itemsNeeded) && compareArrays(this.output, other.output)
+		return compareArrays(this.itemsNeeded, other.itemsNeeded)
+			&& compareArrays(this.output, other.output)
 			&& this.recipeTime.getSeconds() === other.recipeTime.getSeconds()
 	}
 

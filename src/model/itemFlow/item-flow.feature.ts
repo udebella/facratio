@@ -1,13 +1,13 @@
 import {expect} from 'chai'
 import {buildItem} from '../item/item'
-import {ItemQuantity} from '../itemQuantity/item-quantity'
+import {buildItemQuantity} from '../itemQuantity/item-quantity'
 import {buildTimeSpan, TimeFrame} from '../timespan/timespan'
 import {ItemFlow} from './item-flow'
 
 describe('ItemFlow features', () => {
 	const copper = buildItem('Copper')
-	const oneCopper = new ItemQuantity(copper, 1)
-	const twoCopper = new ItemQuantity(copper, 2)
+	const oneCopper = buildItemQuantity(copper, 1)
+	const twoCopper = buildItemQuantity(copper, 2)
 	const oneSecond = buildTimeSpan(1, TimeFrame.SECONDS)
 	const twoSecond = buildTimeSpan(2, TimeFrame.SECONDS)
 

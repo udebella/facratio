@@ -1,22 +1,22 @@
 import {expect} from 'chai'
-import {createStubInstance} from 'sinon'
 import {compareArrays} from '../../helpers/compare-arrays'
-import {buildItem} from '../item/item'
-import {ItemFlow} from '../itemFlow/item-flow'
-import {ItemQuantity} from '../itemQuantity/item-quantity'
-import {buildTimeSpan, TimeFrame, TimeSpan} from '../timespan/timespan'
+import {TimeSpan} from '../timespan/timespan'
 import {Recipe} from './recipe'
 
 describe('Class Recipe', () => {
-	let timespan: TimeSpan
-	let input: any
-	let output: any
-
-	beforeEach(() => {
-		timespan = buildTimeSpan(1, TimeFrame.SECONDS)
-		input = createStubInstance(ItemQuantity)
-		output = createStubInstance(ItemQuantity)
-	})
+	const timespan: TimeSpan = {
+		getSeconds: () => 1,
+	}
+	const input: any = {
+		over: () => fakeInput,
+	}
+	const output: any = {
+		getItem: () => item,
+		over: () => fakeOutput,
+	}
+	const fakeInput: any = 'fakeInput'
+	const fakeOutput: any = 'fakeOutput'
+	const item: any = 'someItem'
 
 	describe('Method: consumes', () => {
 		it('should require no item for a free recipe', () => {
@@ -25,10 +25,9 @@ describe('Class Recipe', () => {
 		})
 
 		it('should consume an itemflow corresponding to the recipe', () => {
-			input.over.returns(new ItemFlow(input, timespan))
 			const recipe = new Recipe([input], [], timespan)
 
-			expect(recipe.consumes()).to.deep.equal([new ItemFlow(input, timespan)])
+			expect(recipe.consumes()).to.deep.equal([fakeInput])
 		})
 	})
 
@@ -39,10 +38,9 @@ describe('Class Recipe', () => {
 		})
 
 		it('should produce an itemflow corresponding to the recipe', () => {
-			output.over.returns(new ItemFlow(output, timespan))
 			const recipe = new Recipe([], [output], timespan)
 
-			expect(recipe.produces()).to.deep.equal([new ItemFlow(output, timespan)])
+			expect(recipe.produces()).to.deep.equal([fakeOutput])
 		})
 	})
 
@@ -50,14 +48,14 @@ describe('Class Recipe', () => {
 		it('should return an empty list when the recipe only consumes', () => {
 			const recipe = new Recipe([], [], timespan)
 
-			expect(recipe.getProducedItems()).to.deep.equal([])
+			const comparison = compareArrays(recipe.getProducedItems(), [])
+			expect(comparison).to.be.true
 		})
 
 		it('should return the list of items produced', () => {
-			output.getItem.returns(buildItem('gear'))
 			const recipe = new Recipe([], [output], timespan)
 
-			const comparison = compareArrays(recipe.getProducedItems(), [buildItem('gear')])
+			const comparison = compareArrays(recipe.getProducedItems(), [item])
 			expect(comparison).to.be.true
 		})
 	})

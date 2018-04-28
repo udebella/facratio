@@ -1,7 +1,7 @@
 import {expect} from 'chai'
 import {buildTimeSpan, TimeFrame} from './timespan'
 
-describe('Class TimeSpan', () => {
+describe('TimeSpan', () => {
 	describe('Method: GetSeconds', () => {
 		it('should give second number for a given timespan of 1 second', () => {
 			const timespan = buildTimeSpan(1, TimeFrame.SECONDS)

@@ -2,7 +2,7 @@ import {expect} from 'chai'
 import {compareArrays} from '../../helpers/compare-arrays'
 import {buildItem} from '../item/item'
 import {ItemFlow} from '../itemFlow/item-flow'
-import {ItemQuantity} from '../itemQuantity/item-quantity'
+import {buildItemQuantity} from '../itemQuantity/item-quantity'
 import {buildTimeSpan, TimeFrame} from '../timespan/timespan'
 import {Recipe} from './recipe'
 
@@ -12,8 +12,8 @@ describe('Recipe features', () => {
 	beforeEach(() => {
 		const iron = buildItem('iron')
 		const gear = buildItem('gear')
-		const output = new ItemQuantity(gear, 1)
-		const input = new ItemQuantity(iron, 2)
+		const output = buildItemQuantity(gear, 1)
+		const input = buildItemQuantity(iron, 2)
 		const craftingTime = buildTimeSpan(0.5, TimeFrame.SECONDS)
 		recipe = new Recipe([input], [output], craftingTime)
 	})
@@ -21,7 +21,7 @@ describe('Recipe features', () => {
 	it('should calculate right consumption', () => {
 		// Given
 		const iron = buildItem('iron')
-		const consputionPerSecond = new ItemQuantity(iron, 4)
+		const consputionPerSecond = buildItemQuantity(iron, 4)
 		const oneSecond = buildTimeSpan(1, TimeFrame.SECONDS)
 
 		// When
@@ -35,7 +35,7 @@ describe('Recipe features', () => {
 	it('should calculate right production', () => {
 		// Given
 		const gear = buildItem('gear')
-		const productionPerSecond = new ItemQuantity(gear, 2)
+		const productionPerSecond = buildItemQuantity(gear, 2)
 		const oneSecond = buildTimeSpan(1, TimeFrame.SECONDS)
 
 		// When

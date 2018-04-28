@@ -1,32 +1,44 @@
 import {Item} from '../item/item'
-import {FlowableQuantity, ItemFlow} from '../itemFlow/item-flow'
+import {ItemFlow} from '../itemFlow/item-flow'
 import {TimeSpan} from '../timespan/timespan'
 
-export class ItemQuantity implements FlowableQuantity {
-	private readonly item: Item
-	private readonly quantity: number
-
-	constructor(item: Item, quantity: number) {
-		this.item = item
-		this.quantity = quantity
+export const buildItemQuantity = (item: Item, quantity: number): ItemQuantity => {
+	const over = (timeSpan: TimeSpan): ItemFlow => {
+		return new ItemFlow(buildItemQuantity(item, quantity), timeSpan)
 	}
 
-	public over(timeSpan: TimeSpan): ItemFlow {
-		return new ItemFlow(this, timeSpan)
+	const getItem = (): Item => {
+		return item
 	}
 
-	public getItem(): Item {
-		return this.item
+	const getQuantity = (): number => {
+		return quantity
 	}
 
-	public equals(other: ItemQuantity): boolean {
-		return this.item.equals(other.item)
-			&& this.quantity === other.quantity
+	const equals = (other: ItemQuantity): boolean => {
+		return item.equals(other.getItem())
+			&& quantity === other.getQuantity()
 	}
-	public divide(factor: number): ItemQuantity {
+	const divide = (factor: number): ItemQuantity => {
 		if (factor === 0) {
 			throw new Error('Invalid division factor')
 		}
-		return new ItemQuantity(this.item, this.quantity / factor)
+		return buildItemQuantity(item, quantity / factor)
 	}
+
+	return {
+		divide,
+		equals,
+		getItem,
+		getQuantity,
+		over,
+	}
+}
+
+export interface ItemQuantity {
+	divide: (factor: number) => ItemQuantity,
+	equals: (other: ItemQuantity) => boolean,
+	getItem: () => Item,
+	getQuantity: () => number
+	over: (timeSpan: TimeSpan) => ItemFlow,
 }
