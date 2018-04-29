@@ -1,12 +1,16 @@
 import {expect} from 'chai'
-import {buildItem} from '../item/item'
 import {ItemFlow} from '../itemFlow/item-flow'
 import {buildItemQuantity} from './item-quantity'
 
 describe('ItemQuantity', () => {
-	const iron = buildItem('Iron')
+	const iron: any = {
+		getId: () => 'iron',
+	}
+	const copper: any = {
+		getId: () => 'copper',
+	}
 
-	describe('Method: over', () => {
+	describe('over', () => {
 		it('should produce an iron flow when a timespan is 1 second', () => {
 			const itemQuantity = buildItemQuantity(iron, 1)
 			const timeSpan: any = {
@@ -20,14 +24,14 @@ describe('ItemQuantity', () => {
 		})
 	})
 
-	describe('Method: getItem', () => {
+	describe('getItem', () => {
 		it('should give access to the item object', () => {
 			const itemQuantity = buildItemQuantity(iron, 1)
 			expect(itemQuantity.getItem()).to.be.equals(iron)
 		})
 	})
 
-	describe('Method: equals', () => {
+	describe('equals', () => {
 		it('should recognize comparable quantities', () => {
 			const itemQuantity = buildItemQuantity(iron, 2)
 
@@ -38,19 +42,19 @@ describe('ItemQuantity', () => {
 		it('should not be equal if we compare quantities of different items', () => {
 			const itemQuantity = buildItemQuantity(iron, 2)
 
-			const expected = buildItemQuantity(buildItem('Copper'), 2)
+			const expected = buildItemQuantity(copper, 2)
 			expect(itemQuantity.equals(expected)).to.be.false
 		})
 
 		it('should not be equal if we compare different quantities the same iron', () => {
 			const itemQuantity = buildItemQuantity(iron, 2)
 
-			const expected = buildItemQuantity(buildItem('Iron'), 1)
+			const expected = buildItemQuantity({...iron}, 1)
 			expect(itemQuantity.equals(expected)).to.be.false
 		})
 	})
 
-	describe('Method: divide', () => {
+	describe('divide', () => {
 		it('should allow to divide an itemQuantity by two', () => {
 			const itemQuantity = buildItemQuantity(iron, 2)
 
