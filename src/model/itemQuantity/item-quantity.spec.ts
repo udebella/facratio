@@ -1,5 +1,4 @@
 import {expect} from 'chai'
-import {ItemFlow} from '../itemFlow/item-flow'
 import {buildItemQuantity} from './item-quantity'
 
 describe('ItemQuantity', () => {
@@ -10,24 +9,10 @@ describe('ItemQuantity', () => {
 		getId: () => 'copper',
 	}
 
-	describe('over', () => {
-		it('should produce an iron flow when a timespan is 1 second', () => {
-			const itemQuantity = buildItemQuantity(iron, 1)
-			const timeSpan: any = {
-				getSeconds: () => 1,
-			}
-
-			const itemFlow = itemQuantity.over(timeSpan)
-
-			const expectedFlow = new ItemFlow(buildItemQuantity(iron, 1), timeSpan)
-			expect(itemFlow.equals(expectedFlow)).to.be.true
-		})
-	})
-
 	describe('getItem', () => {
 		it('should give access to the item object', () => {
 			const itemQuantity = buildItemQuantity(iron, 1)
-			expect(itemQuantity.getItem()).to.be.equals(iron)
+			expect(itemQuantity.getItem()).to.equals(iron)
 		})
 	})
 
