@@ -1,3 +1,4 @@
+import {buildComparable, Comparable} from '../../helpers/comparable'
 import {FactoryModel} from '../factoryModel/factory-model'
 import {Item} from '../item/item'
 
@@ -7,16 +8,19 @@ export interface Producer {
 
 export const NOTHING_PRODUCER: Producer = new FactoryModel([], 1)
 
-export class FactoryModels {
-	private readonly factoryModels: Producer[]
+export interface FactoryModels extends Comparable {
+	findModelProducing(item: Item): Producer
+}
 
-	constructor(factoryModels: Producer[]) {
-		this.factoryModels = factoryModels
+export const buildFactoryModels = (producers: Producer[]): FactoryModels => {
+	const findModelProducing = (item: Item): Producer => {
+		return producers.find((producer) => producer.canProduce(item))
+			|| NOTHING_PRODUCER
 	}
 
-	public findModelProducing(item: Item): Producer {
-		return this.factoryModels
-			.find((producer) => producer.canProduce(item))
-			|| NOTHING_PRODUCER
+	return {
+		// FIXME factory models are not comparable while factory does not implement comparable
+		...buildComparable(''),
+		findModelProducing,
 	}
 }

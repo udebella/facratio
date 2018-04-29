@@ -1,34 +1,47 @@
 import {expect} from 'chai'
-import {buildItem} from '../item/item'
-import {FactoryModels, NOTHING_PRODUCER, Producer} from './factory-models'
+import {buildFactoryModels, FactoryModels, NOTHING_PRODUCER, Producer} from './factory-models'
 
-describe('Class FactoryModels', () => {
-	const copperWire = buildItem('copperWire')
-	const gear = buildItem('gear')
-	const gearProducer: Producer = {
-		canProduce: (item) => item.equals(gear),
-	}
-	const copperWireProducer: Producer = {
-		canProduce: (item) => item.equals(copperWire),
-	}
-	const factoryModels: FactoryModels = new FactoryModels([gearProducer, copperWireProducer])
-
-	describe('Method findModelForProducing', () => {
+describe('FactoryModels', () => {
+	describe('findModelForProducing', () => {
 		it('should find the right model that can produce an gear', () => {
-			const foundModel = factoryModels.findModelProducing(gear)
+			// Given
+			const gearProducer: Producer = {
+				canProduce: () => true,
+			}
+			const factoryModels: FactoryModels = buildFactoryModels([gearProducer])
 
+			// When
+			const foundModel = factoryModels.findModelProducing({} as any)
+
+			// Then
 			expect(foundModel).to.equals(gearProducer)
 		})
 
 		it('should find the right model that can produce an copper wire', () => {
-			const foundModel = factoryModels.findModelProducing(copperWire)
+			// Given
+			const notProducer: Producer = {
+				canProduce: () => false,
+			}
+			const producer: Producer = {
+				canProduce: () => true,
+			}
+			const factoryModels: FactoryModels = buildFactoryModels([notProducer, producer])
 
-			expect(foundModel).to.equals(copperWireProducer)
+			// When
+			const foundModel = factoryModels.findModelProducing({} as any)
+
+			// Then
+			expect(foundModel).to.equals(producer)
 		})
 
 		it('should return a default value when no matching factory is found', () => {
-			const foundModel = factoryModels.findModelProducing(buildItem('iron'))
+			// Givenn
+			const factoryModels: FactoryModels = buildFactoryModels([])
 
+			// When
+			const foundModel = factoryModels.findModelProducing({} as any)
+
+			// Then
 			expect(foundModel).to.equals(NOTHING_PRODUCER)
 		})
 	})
