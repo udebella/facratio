@@ -1,11 +1,11 @@
 import {expect} from 'chai'
-import {Factory} from './factory'
+import {buildFactory} from './factory'
 
-describe('Class Factory', () => {
+describe('Factory', () => {
 
-	describe('Method: computeMaximumOutput', () => {
+	describe('computeMaximumOutput', () => {
 		it('should produce no output when the recipebook does not contain a recipe for the item', () => {
-			const factory = new Factory()
+			const factory = buildFactory()
 			expect(factory.computeMaximumOutput()).to.deep.equal([])
 		})
 	})
