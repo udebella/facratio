@@ -1,5 +1,5 @@
 import {expect} from 'chai'
-import {FactoryModel} from '../factoryModel/factory-model'
+import {buildFactoryModel} from '../factoryModel/factory-model'
 import {buildItem} from '../item/item'
 import {buildItemQuantity} from '../itemQuantity/item-quantity'
 import {buildRecipe} from '../recipe/recipe'
@@ -14,7 +14,7 @@ describe('Factory models features', () => {
 			const output = buildItemQuantity(buildItem('Gear wheel'), 1)
 			const input = buildItemQuantity(buildItem('Iron'), 2)
 			const gearWheelRecipe = buildRecipe([input], [output], craftingTime)
-			const gearWheelFactory = new FactoryModel([gearWheelRecipe], 1)
+			const gearWheelFactory = buildFactoryModel([gearWheelRecipe], 1)
 			const factoryModels = buildFactoryModels([gearWheelFactory])
 
 			// When

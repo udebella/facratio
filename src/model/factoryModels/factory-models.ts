@@ -1,12 +1,12 @@
 import {buildComparable, Comparable} from '../../helpers/comparable'
-import {FactoryModel} from '../factoryModel/factory-model'
+import {buildFactoryModel} from '../factoryModel/factory-model'
 import {Item} from '../item/item'
 
 export interface Producer {
 	canProduce(item: Item): boolean
 }
 
-export const NOTHING_PRODUCER: Producer = new FactoryModel([], 1)
+export const NOTHING_PRODUCER: Producer = buildFactoryModel([], 1)
 
 export interface FactoryModels extends Comparable {
 	findModelProducing(item: Item): Producer
