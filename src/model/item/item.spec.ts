@@ -2,7 +2,7 @@ import {expect} from 'chai'
 import {buildItem} from './item'
 
 describe('Item', () => {
-	describe('Method: Equals', () => {
+	describe('equals', () => {
 		it('different items should not be equals', () => {
 			const iron = buildItem('iron')
 			const copper = buildItem('copper')
