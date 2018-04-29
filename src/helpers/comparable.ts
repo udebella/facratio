@@ -1,6 +1,6 @@
 export interface Comparable {
-	getId: () => string,
-	equals: (other: Comparable) => boolean
+	getId(): string,
+	equals(other: Comparable): boolean
 }
 
 export const buildComparable = (identifiant: string): Comparable => {

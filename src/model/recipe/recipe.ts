@@ -5,9 +5,9 @@ import {ItemQuantity} from '../itemQuantity/item-quantity'
 import {TimeSpan} from '../timespan/timespan'
 
 export interface Recipe extends Comparable {
-	consumes: () => ItemFlow[],
-	getProducedItems: () => Item[],
-	produces: () => ItemFlow[],
+	consumes(): ItemFlow[],
+	getProducedItems(): Item[],
+	produces(): ItemFlow[],
 }
 
 export function buildRecipe(input: ItemQuantity[], output: ItemQuantity[], recipeTime: TimeSpan): Recipe {

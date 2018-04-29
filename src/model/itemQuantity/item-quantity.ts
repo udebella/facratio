@@ -4,9 +4,9 @@ import {ItemFlow} from '../itemFlow/item-flow'
 import {TimeSpan} from '../timespan/timespan'
 
 export interface ItemQuantity extends Comparable {
-	divide: (factor: number) => ItemQuantity,
-	getItem: () => Item,
-	over: (timeSpan: TimeSpan) => ItemFlow,
+	divide(factor: number): ItemQuantity,
+	getItem(): Item,
+	over(timeSpan: TimeSpan): ItemFlow,
 }
 
 export const buildItemQuantity = (item: Item, quantity: number): ItemQuantity => {
