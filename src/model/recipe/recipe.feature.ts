@@ -1,7 +1,7 @@
 import {expect} from 'chai'
 import {compareArrays} from '../../helpers/compare-arrays'
 import {buildItem} from '../item/item'
-import {ItemFlow} from '../itemFlow/item-flow'
+import {buildItemFlow} from '../itemFlow/item-flow'
 import {buildItemQuantity} from '../itemQuantity/item-quantity'
 import {buildTimeSpan, TimeFrame} from '../timespan/timespan'
 import {buildRecipe, Recipe} from './recipe'
@@ -28,7 +28,7 @@ describe('Recipe features', () => {
 		const consumption = recipe.consumes()
 
 		// Then
-		const expectedConsumption = [new ItemFlow(consputionPerSecond, oneSecond)]
+		const expectedConsumption = [buildItemFlow(consputionPerSecond, oneSecond)]
 		expect(compareArrays(consumption, expectedConsumption)).to.be.true
 	})
 
@@ -42,7 +42,7 @@ describe('Recipe features', () => {
 		const production = recipe.produces()
 
 		// Then
-		const expectedProduction = [new ItemFlow(productionPerSecond, oneSecond)]
+		const expectedProduction = [buildItemFlow(productionPerSecond, oneSecond)]
 		expect(compareArrays(production, expectedProduction)).to.be.true
 	})
 

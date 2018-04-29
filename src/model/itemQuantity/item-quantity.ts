@@ -1,6 +1,6 @@
 import {buildComparable, Comparable} from '../../helpers/comparable'
 import {Item} from '../item/item'
-import {ItemFlow} from '../itemFlow/item-flow'
+import {buildItemFlow, ItemFlow} from '../itemFlow/item-flow'
 import {TimeSpan} from '../timespan/timespan'
 
 export interface ItemQuantity extends Comparable {
@@ -11,7 +11,7 @@ export interface ItemQuantity extends Comparable {
 
 export const buildItemQuantity = (item: Item, quantity: number): ItemQuantity => {
 	const over = (timeSpan: TimeSpan): ItemFlow => {
-		return new ItemFlow(buildItemQuantity(item, quantity), timeSpan)
+		return buildItemFlow(buildItemQuantity(item, quantity), timeSpan)
 	}
 
 	const getItem = (): Item => {

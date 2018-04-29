@@ -1,18 +1,13 @@
+import {buildComparable, Comparable} from '../../helpers/comparable'
+import {ItemQuantity} from '../itemQuantity/item-quantity'
 import {TimeSpan} from '../timespan/timespan'
 
-export interface FlowableQuantity {
-	divide(factor: number): FlowableQuantity
-	equals(flowableQuantity: any): boolean
-}
+export type ItemFlow = Comparable
 
-export class ItemFlow {
-	private readonly flowableQuantity: FlowableQuantity
+export const buildItemFlow = (itemQuantity: ItemQuantity, timespan: TimeSpan): ItemFlow => {
+	const quantityOverOneSecond = itemQuantity.divide(timespan.getSeconds())
 
-	constructor(flowableQuantity: FlowableQuantity, timespan: TimeSpan) {
-		this.flowableQuantity = flowableQuantity.divide(timespan.getSeconds())
-	}
-
-	public equals(other: ItemFlow): boolean {
-		return this.flowableQuantity.equals(other.flowableQuantity)
+	return {
+		...buildComparable(`itemFlow_${quantityOverOneSecond.getId()}`),
 	}
 }

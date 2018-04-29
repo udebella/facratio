@@ -1,6 +1,6 @@
 import {expect} from 'chai'
 import {buildItem} from '../item/item'
-import {ItemFlow} from '../itemFlow/item-flow'
+import {buildItemFlow} from '../itemFlow/item-flow'
 import {buildTimeSpan, TimeFrame} from '../timespan/timespan'
 import {buildItemQuantity} from './item-quantity'
 
@@ -11,7 +11,7 @@ describe('ItemQuantity Features', () => {
 
 			const itemFlow = itemQuantity.over(buildTimeSpan(1, TimeFrame.SECONDS))
 
-			const expectedFlow = new ItemFlow(buildItemQuantity(buildItem('Iron'), 1), buildTimeSpan(1, TimeFrame.SECONDS))
+			const expectedFlow = buildItemFlow(buildItemQuantity(buildItem('Iron'), 1), buildTimeSpan(1, TimeFrame.SECONDS))
 			expect(itemFlow.equals(expectedFlow)).to.be.true
 		})
 	})
